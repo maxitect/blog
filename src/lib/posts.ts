@@ -18,23 +18,28 @@ export interface Post {
   content: string;
   /** Short preview/excerpt that is rendered on the index page */
   preview: string;
+  /** Path to the post image */
+  imagePath?: string;
 }
 
 function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    // Replace spaces with hyphens
-    .replace(/\s+/g, "-")
-    // Remove all characters that are not alphanumeric, hyphen or underscore
-    .replace(/[^a-z0-9-_]/g, "")
-    // Collapse multiple hyphens
-    .replace(/-+/g, "-");
+  return (
+    text
+      .toLowerCase()
+      .trim()
+      // Replace spaces with hyphens
+      .replace(/\s+/g, "-")
+      // Remove all characters that are not alphanumeric, hyphen or underscore
+      .replace(/[^a-z0-9-_]/g, "")
+      // Collapse multiple hyphens
+      .replace(/-+/g, "-")
+  );
 }
 
 export function getAllPosts(): Post[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const posts = fileNames.map((fileName) => {
+    const imagePath = "/" + fileName.replace(".md", ".png");
     const slug = fileName.replace(/\.md$/, "");
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -60,7 +65,17 @@ export function getAllPosts(): Post[] {
 
     const slugified = slugify(title);
 
-    return { slug: slugified, title, date, content, preview };
+    const imageExists =
+      imagePath && fs.existsSync(path.join(process.cwd(), "public", imagePath));
+
+    return {
+      slug: slugified,
+      title,
+      date,
+      content,
+      preview,
+      ...(imageExists ? { imagePath } : {}),
+    };
   });
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
