@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={"scroll-smooth antialiased flex flex-col min-h-screen"}>
         <Header />
-        <main className="font-book-regular flex-1 container p-4 mx-auto max-w-3xl">
+        <main className="font-book-regular flex-1 container p-4 mx-auto w-[85vw] max-w-3xl">
           {children}
         </main>
         <Footer />
