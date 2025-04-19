@@ -4,21 +4,11 @@ date: "2025-04-19"
 tags: ["data science", "machine learning", "best practice", "software"]
 ---
 
-Starting the Machine Learning Institute (MLX) bootcamp has been a bit like stepping into a parallel coding universe. Last year, I learned to code formally as a software engineer where code is pristine, modular, tested to the nines, and ready to survive anything the real world throws at it. It is filled with type hints and abstraction that tends to bloat the codebase quickly. But the moment I opened a Jupyter notebook at MLX, I was hit by something that felt both jarring and oddly liberating: the sheer _lean-ness_ of the code.
+Having recently embarked on a machine learning bootcamp at the Machine Learning Institute (MLX), I've been struck by a fascinating contrast in coding styles. Having formally trained in software engineering quite recently, I felt a strange dissonance working with data scientists and how they write their Python code. It was so... lean. Almost sparse compared to the robust, defensive code I'm accustomed to writing. This observation sparked some interesting reflections about the different approaches these two disciplines take to solving problems.
 
-It's not sloppy. It's not lazy. It’s… focused. And there's something to learn here.
+## When two worlds collide
 
-### Different Goals, Different Rules
-
-At its core, the difference between software engineers and data scientists comes down to purpose. We, the engineers, build systems designed to last. Our code has to be bulletproof, because one wrong input in production could take down a service, corrupt a database, or send a user’s delivery to the wrong continent.
-
-Data scientists? They’re explorers. Their code is built for speed—quick hypotheses, fast feedback, minimal ceremony. That means favouring readability, brevity and reproducibility over rigid structure.
-
-Where we scaffold an app, they script a story.
-
-### The Magic of Rapid Feedback
-
-In the MLX course, I noticed how much faster I could iterate when I let go of some of my old habits. Here's a typical snippet from a data science notebook:
+In my first week at MLX, we dove straight into neural networks, which was both exhilarating and slightly overwhelming. During the exploratory data analysis session, I examined my peers' code for how to evaluate features for our MLP model using a simple regression:
 
 ```python
 import pandas as pd
@@ -31,15 +21,25 @@ model = LinearRegression().fit(df[['log_price']], df.sales)
 print(model.coef_)
 ```
 
-That's it. No logging. No error handling. No config files. And yet—it does the job. The focus is clear: transform the data, fit the model, get the insight. It invites you to ask questions, not manage dependencies.
+Had this been my code, I'd have included error handling, logging, type hints, thorough documentation, and probably split it into multiple functions. What's worse, I'd have probably written a whole spec on how to write it before even starting. But here was the stark reality: this approach was _perfect_ for learning. While my software engineer instincts screamed for more structure, I realised this stripped-down style kept the focus exactly where it needed to be—on understanding the machine learning concepts, not the surrounding code architecture. It is about expressing that logic through simple code.
 
-### Now Contrast That With Engineering Code
+## Different priorities, different practices
+
+This experience made me reflect more deeply on the fundamental differences between how data scientists and software engineers approach coding. It's not about skill or quality—it's about purpose.
+
+Data scientists typically work in an exploratory, research-oriented environment. Their code serves as both a discovery tool and a means of communication. They prioritise readability, speed of iteration, and flexibility to test hypotheses quickly. Code that clearly shows each step in an analysis is more valuable than code that anticipates every edge case.
+
+Software engineers, on the other hand, build systems that must withstand the unpredictability of production environments. Our code must be robust, maintainable, and scalable. We anticipate failure modes, build defensive code, and optimise for long-term maintainability rather than short-term clarity.
+
+Consider how differently we might approach a data processing task:
+
+**Software engineer's version:**
 
 ```python
 import logging
-from myapp.config import get_config
-from myapp.data_loader import load_data
-from myapp.model import Model
+from src.config import get_config
+from src.utils.data_loader import load_data
+from src.app.model import Model
 
 logger = logging.getLogger(__name__)
 
@@ -59,40 +59,64 @@ if __name__ == "__main__":
     main()
 ```
 
-Here we’ve got error handling, separation of concerns, logging, and externalised config. This is what you’d want in production. But for experimentation? It’s a straightjacket.
+The contrast is striking. Behind this code there is also a great deal of abstracted code that can run in the hundreds of lines compared to the 8 lines needed in the previous example. Both accomplish similar tasks, but with vastly different assumptions about context and purpose.
 
-### Notebooks vs Pipelines, Print vs Logs
+## Documentation: embedded vs external
 
-Data scientists lean on notebooks for their narrative, running blocks of code like paragraphs in an essay. They share insights, not APIs. While this makes for an incredibly readable and interactive environment, it does create a bit of chaos for long-term maintenance.
+In the data science world, I've noticed that documentation takes on a completely different form. Rather than extensive external documentation, data scientists embed their explanations directly within notebooks using markdown cells and descriptive variable names. The code and explanation flow together like a narrative, telling the story of their analysis.
 
-Engineers, on the other hand, live in versioned repositories, pull requests, and continuous integration. It’s a different game: slower to start, but scalable in the long run.
+As a software engineer, I'm used to maintaining separate README files, architecture diagrams, API docs, and even wikis. There's a clear separation between code and documentation. While this feels more structured and comprehensive, I can see how the integrated approach favours the rapid iteration that data scientists need.
 
-### Testing Is… Optional?
+## Testing: formal vs intuitive
 
-This one took me by surprise: tests are rare in exploratory work. Instead of formalised unit tests, data scientists often use quick sanity checks—eyeballing plots, looking at summary statistics, rerunning cells to see if results make sense.
+One other difference I've encountered is the approach to testing. In software engineering, we live by our test suites—unit tests, integration tests, end-to-end tests—all automated and running in CI pipelines. Code without tests is considered incomplete at best, dangerous at worst.
 
-Data‑science code tends to “fail fast,” surfacing errors immediately so you can clean or adjust the data on the fly. Production‑grade code, however, implements structured exception handling, logging and graceful degradation to maintain uptime and user trust.
+Data scientists, however, take a more intuitive approach. Their "tests" might be visual checks of a plot, examining summary statistics, or simply rerunning cells to see if results make sense. They rely on the immediate feedback loop of the notebook environment to catch issues.
 
-I had to remind myself: when you’re trying to understand _why_ a pattern exists in your data, the best test might be your brain, not `pytest`.
+In our first week building neural networks, we didn't write a single formal test. Instead, we checked our implementation by sharing outputs and comaring with one another and visualising decision boundaries. Was it rigorous by engineering standards? No. But it was remarkably effective for learning and confirming our understanding.
 
-### Readme? What Readme?
+## CI/CD: pipelines vs exploration
 
-In data science, documentation is often baked right into the code—think clear variable names and a few markdown cells explaining what’s going on. It’s fast, it’s close to the code, and it works… until it doesn’t.
+Continuous Integration and Deployment are cornerstones of modern software engineering. We build elaborate pipelines to ensure code quality, run tests, and deploy safely. Every pull request goes through this gauntlet before it can be merged.
 
-Engineers, meanwhile, are the kings and queens of external docs—README files, architecture diagrams, wikis, you name it. It might feel like overkill at first, but when a teammate jumps into your code six months later (or future-you does), it does pay off.
+Data science workflows, by contrast, are much more fluid. Version control might be used sporadically, or not at all. When it is used, changes are often pushed directly to main branches. Instead of feature development, branches might be used to develop parallel workflows. Code reviews are often conducted in person, looking at notebooks together rather than through formal pull request processes.
 
-### Dependency Roulette
+At MLX, I feel encouraged to experiment freely without these constraints. It feels almost rebellious coming from a structured engineering background, but I can see how it removes barriers to creativity and exploration.
 
-Pip install and hope for the best? That’s how a lot of small data projects start. And to be fair, a simple `requirements.txt` or Conda env does the job—for a while. But once things get serious, engineers go full ops mode: locked dependencies, Docker containers, and separate dev vs prod environments. It might sound like a headache, but it’s the only way to stop the “it works on my machine” monster from crashing the party.
+## Dependencies: locked down vs flexible
 
-### Learning to Let Go
+In software engineering, managing dependencies is a critical discipline. We use lockfiles, containerisation, and separate dev/prod environments to guarantee consistent behaviour across different systems.
 
-If there’s one thing I’ve taken away from this experience, it’s that sometimes our engineering instincts can get in the way of learning. Overengineering a prototype won’t help you understand gradient descent faster. Sometimes, you just need to `print(model.coef_)` and move on.
+The data science approach is notably more relaxed. A simple requirements.txt or Conda environment often suffices, with less concern for exact version pinning. This flexibility allows for quicker setup and experimentation, albeit with the occasional "it works on my machine" moment.
 
-This stripped-down approach has helped me focus more on what I came here to learn—machine learning, not production-level tooling. And ironically, the clarity of this code makes it easier to grasp the maths, the model behaviour, the “magic” that drew me in the first place.
+During the bootcamp setup, we were given a relatively simple environment file without strict version constraints. While this would have made me a bit jittery normally, it worked perfectly for our learning environment where absolute reproducibility was less critical. The code simply needs to run on the specific dataset we need.
 
-### Bridging the Gap
+## Learning through simplicity
 
-The two worlds are converging. MLOps is bringing rigour to data workflows. Tools like `dvc`, `mlflow`, and `pydantic` are helping formalise experimentation. Meanwhile, engineers are learning to embrace the power of exploratory analysis.
+What has become increasingly clear during my bootcamp experience is that the data science approach offers distinct advantages when learning complex concepts like machine learning:
 
-But the best lessons? They come from seeing both sides.
+1. **Focus on concepts, not code**: With simpler code structures, more mental bandwidth is available for grasping the mathematical and statistical concepts.
+
+2. **Immediate feedback**: Quick, iterative coding allows for rapid experimentation and immediate visualisation of results.
+
+3. **Reduced cognitive load**: Without worrying about error handling, graceful fallbacks, modularity or passing tests, it's easier to concentrate on the transformations and algorithms themselves.
+
+4. **Visible logic flow**: When code follows a clear, linear progression without abstractions, the core logic is clearly revealed.
+
+In our first week at MLX, building neural networks from scratch, the focus wasn't on creating production-ready code but on understanding how neural networks operate, backpropagation and loss calculations. Had we been concerned with proper error handling and architecture, we likely would have missed the forest for the trees.
+
+## Finding the right tool for the job
+
+This isn't to say one approach is universally better than the other. Rather, each has its place. The data science approach optimises for learning and discovery; the software engineering approach optimises for reliability and maintainability.
+
+As I progress through the bootcamp, I'm learning to appreciate both methodologies and context-switch between them. When I'm trying to understand a new algorithm or statistical concept, I will embrace the leaner style that prioritises clarity and exploration. When I need to integrate a model into a larger system, I will bring in the software engineering practices that ensure robustness.
+
+The industry has already identified this need for a middle ground some years ago so I don't think I'm pointing out anything new here. The field of MLOps bridges these worlds, bringing software engineering best practices into the data science workflow while maintaining the flexibility needed for effective experimentation. Tools like DVC, MLflow, and even Pydantic help to formalise experimental work without sacrificing too much agility.
+
+## Final thoughts
+
+Perhaps the most valuable lesson I've taken from this experience is the importance of adaptability. Efficient technical practitioners know when to apply rigour and when to prioritise exploration. As I continue my machine learning journey, I'm trying to cultivate both mindsets — using the right approach for the context rather than dogmatically sticking to either extreme.
+
+Learning to embrace the lean, focused code of data scientists has been unexpectedly liberating. It's teaching me not just about machine learning, but also about when to let go of certain practices to prioritise understanding. Sometimes, the most elegant solution isn't the most engineered one—it's the one that most clearly expresses the idea.
+
+After just one week at MLX, I'm already seeing how this minimalist approach can accelerate my learning. By focusing less on engineering ceremony and more on core concepts, I'm able to grasp neural networks more quickly. There's something very elegant about stripping away the layers of abstraction and seeing the raw algorithms at work.
