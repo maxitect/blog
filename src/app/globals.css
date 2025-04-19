@@ -111,27 +111,27 @@ ol ol ol {
 
 /* Inline code styling */
 :not(pre) > code {
-  @apply bg-gray-900 text-blue-600 font-mono-regular px-1;
+  @apply bg-background-mid text-blue-600 font-mono-regular px-1;
 }
 
 /* Blockquote styling for markdown */
 blockquote {
-  @apply border-l-4 border-green-500 pl-4 italic text-green-200 mb-5;
+  @apply border-l-4 border-foreground-mid pl-4 italic text-foreground-mid mb-5;
 }
 
 /* Horizontal rule as separator */
 hr {
-  @apply border-t-2 border-gray-500 my-8;
+  @apply border-t-2 border-foreground-mid mb-8;
 }
 
 /* Table styling */
 table {
-  @apply border border-gray-500 mb-8 w-full table-auto;
+  @apply border border-foreground-mid mb-8 w-full table-auto;
 }
 th,
 td {
-  @apply border border-gray-500 px-4 py-2 font-mono-regular text-sm;
+  @apply border border-foreground-mid px-4 py-2 font-mono-regular text-sm;
 }
 thead {
-  @apply bg-gray-800;
+  @apply bg-background-mid;
 }
