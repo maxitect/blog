@@ -71,7 +71,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply pb-5 font-book-medium;
+  @apply py-5 font-book-medium;
 }
 
 h2 {
@@ -85,7 +85,7 @@ h3 {
 p,
 li,
 pre {
-  @apply text-base mb-10 text-gray-300 rounded-none;
+  @apply text-base mb-5 text-gray-300 rounded-none;
 }
 
 /* Inline code styling */
