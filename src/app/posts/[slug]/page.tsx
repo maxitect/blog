@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import PostContent from "@/components/PostContent";
+import Image from "next/image";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import Date from "@/components/Date";
 
@@ -21,8 +22,18 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <article className="mx-auto">
-      <h1>{post.title}</h1>
-      <Date date={post.date} />
+      <div className="flex flex-wrap gap-8 mb-10">
+        <div className="flex-1 min-w-64">
+          <h1>{post.title}</h1>
+          <hr />
+          <Date date={post.date} />
+        </div>
+        {post.imagePath && (
+          <div className="md:ml-auto min-w-64">
+            <Image src={post.imagePath} alt={""} width="300" height="300" />
+          </div>
+        )}
+      </div>
       <PostContent content={post.content} />
     </article>
   );
