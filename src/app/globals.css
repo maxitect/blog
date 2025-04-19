@@ -61,3 +61,56 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+h1 {
+  @apply text-4xl font-bold mb-6 font-condensed-medium;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply pb-5 font-book-medium;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-xl;
+}
+
+p,
+li,
+pre {
+  @apply text-base mb-10 text-gray-300 rounded-none;
+}
+
+/* Inline code styling */
+:not(pre) > code {
+  @apply bg-gray-900 text-blue-600 font-mono-regular px-1;
+}
+
+/* Blockquote styling for markdown */
+blockquote {
+  @apply border-l-4 border-green-500 pl-4 italic text-green-200 mb-5;
+}
+
+/* Horizontal rule as separator */
+hr {
+  @apply border-t-2 border-gray-500 my-8;
+}
+
+/* Table styling */
+table {
+  @apply border border-gray-500 mb-8 w-full table-auto;
+}
+th,
+td {
+  @apply border border-gray-500 px-4 py-2 font-mono-regular text-sm;
+}
+thead {
+  @apply bg-gray-800;
+}

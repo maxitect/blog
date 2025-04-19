@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={"scroll-smooth antialiased flex flex-col min-h-screen"}>
         <Header />
-        <main className="font-mono-regular flex-1 container mx-auto p-4">
+        <main className="font-book-regular flex-1 container p-4 mx-auto max-w-3xl">
           {children}
         </main>
         <Footer />

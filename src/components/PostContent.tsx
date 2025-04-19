@@ -1,5 +1,6 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import CodeBlock from "./Codeblock";
 
 interface PostContentProps {
   content: string;
@@ -7,9 +8,9 @@ interface PostContentProps {
 
 const PostContent: React.FC<PostContentProps> = ({ content }) => {
   return (
-    <div className="prose">
-      <ReactMarkdown>{content}</ReactMarkdown>
-    </div>
+    <ReactMarkdown components={{ code: CodeBlock }}>
+      {content}
+    </ReactMarkdown>
   );
 };
 

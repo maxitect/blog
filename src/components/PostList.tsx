@@ -1,24 +1,17 @@
 import React from 'react';
-import PostItem from './PostItem';
-
-interface Post {
-  slug: string;
-  title: string;
-  date: string;
-}
+import PostItem from "./PostItem";
+import { Post } from "../lib/posts";
 
 interface PostListProps {
   posts: Post[];
 }
 
-const PostList: React.FC<PostListProps> = ({ posts }) => {
+export default function PostList({ posts }: PostListProps) {
   return (
-    <div>
-      {posts.map(post => (
+    <div className="space-y-10">
+      {posts.map((post) => (
         <PostItem key={post.slug} post={post} />
       ))}
     </div>
   );
-};
-
-export default PostList;
+}
