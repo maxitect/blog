@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { xonokai as codeStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { oneLight as lightStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { oneDark as darkStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import type { HTMLAttributes } from "react";
 import type { Element } from "hast";
@@ -20,6 +23,19 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   children,
   ...props
 }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const codeStyle = isDarkMode ? darkStyle : lightStyle;
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsDarkMode(event.matches);
+    };
+    setIsDarkMode(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
   const match = /language-(\w+)/.exec(className || "");
   if (!inline && match) {
     // Render block code with syntax highlighting
