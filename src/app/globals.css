@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(96.8% 0.007 247.896);
+  --foreground: oklch(20.8% 0.042 265.755);
 }
 
 @font-face {
@@ -52,8 +52,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: oklch(20.8% 0.042 265.755);
+    --foreground: oklch(96.8% 0.007 247.896);
   }
 }
 
@@ -86,6 +86,22 @@ p,
 li,
 pre {
   @apply text-base mb-5 text-gray-300 rounded-none;
+}
+
+ol {
+  @apply pl-8 list-decimal space-y-2 my-4;
+}
+
+ol li {
+  @apply pl-2;
+}
+
+ol ol {
+  @apply pl-6 list-[lower-alpha] my-2;
+}
+
+ol ol ol {
+  @apply list-[lower-roman];
 }
 
 /* Inline code styling */
