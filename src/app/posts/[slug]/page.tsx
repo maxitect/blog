@@ -3,17 +3,11 @@ import PostContent from "@/components/PostContent";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import Date from "@/components/Date";
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
-export default function PostPage({ params }: PageProps) {
+export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   if (!post) {
     notFound();
