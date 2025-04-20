@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs, { existsSync } from "fs";
+import path, { join } from "path";
 import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "src", "posts");
@@ -65,8 +65,9 @@ export function getAllPosts(): Post[] {
 
     const slugified = slugify(title);
 
-    const imageExists =
-      imagePath && fs.existsSync(path.join(process.cwd(), "public", imagePath));
+    // During build time, check if the image exists in the public folder
+    const publicImagePath = join(process.cwd(), "public", imagePath);
+    const imageExists = imagePath && existsSync(publicImagePath);
 
     return {
       slug: slugified,
