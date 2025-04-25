@@ -21,7 +21,7 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   return (
-    <article className="mx-auto">
+    <article className="mx-auto markdown">
       <div className="flex flex-wrap gap-8 mb-10">
         <div className="flex-1 min-w-64">
           <h1>{post.title}</h1>
