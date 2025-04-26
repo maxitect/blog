@@ -8,17 +8,18 @@ Having recently embarked on a machine learning bootcamp at the Machine Learning 
 
 ## When two worlds collide
 
-In my first week at MLX, we dove straight into neural networks, which was both exhilarating and slightly overwhelming. During the exploratory data analysis session, I examined my peers' code for how to evaluate features for our MLP model using a simple regression:
+In my first week at MLX, we dove straight into neural networks, which was both exhilarating and slightly overwhelming. During the exploratory data analysis session, my peers' code for how to evaluate features for our MLP model may have looked something like this:
 
 ```python
 import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
+from psycopg
 
-df = pd.read_csv('data.csv')
-df['log_price'] = np.log(df.price)
-model = LinearRegression().fit(df[['log_price']], df.sales)
-print(model.coef_)
+conn = psycopg.connect('postgresql://sy91dhb:g5t49ao@178.156.142.230:5432/hd64m1ki')
+query = 'SELECT id, title, score FROM hacker_news.items WHERE type = \'story\''
+hn_data = pd.read_sql(query, conn)
+
+hn_data['title_length'] = hn_data.title.str.len()
+hn_data[['title_length', 'score']].corr()
 ```
 
 Had this been my code, I'd have included error handling, logging, type hints, thorough documentation, and probably split it into multiple functions. What's worse, I'd have probably written a whole spec on how to write it before even starting. But here was the stark reality: this approach was _perfect_ for learning. While my software engineer instincts screamed for more structure, I realised this stripped-down style kept the focus exactly where it needed to be—on understanding the machine learning concepts, not the surrounding code architecture. It is about expressing that logic through simple code.
@@ -36,30 +37,67 @@ Consider how differently we might approach a data processing task:
 **Software engineer's version:**
 
 ```python
+import pandas as pd
+import psycopg
 import logging
-from src.config import get_config
-from src.utils.data_loader import load_data
-from src.app.model import Model
+from typing import Dict, Optional
+from psycopg import Error
+from src.config import Config
+from src.features.text_features import extract_text_features
 
 logger = logging.getLogger(__name__)
 
-def main():
+def analyse_hn_dataset() -> Optional[pd.DataFrame]:
+    """
+    Analyzes Hacker News dataset by extracting text features and calculating correlations with post scores.
+
+    Returns:
+        DataFrame with extracted features, or None if an error occurs.
+    """
+    conn = None
     try:
-        config = get_config()
-        data = load_data(config.data_path)
-        model = Model(config.model_params)
-        result = model.predict(data)
-        logger.info("Prediction completed")
-    except FileNotFoundError as e:
-        logger.error(f"Data file not found: {e}")
+        config = Config()
+        db_params: Dict[str, str] = config.get_db_params()
+
+        logger.info("Connecting to HackerNews database")
+        conn = psycopg.connect("postgresql://sy91dhb:g5t49ao@178.156.142.230:5432/hd64m1ki")
+
+        logger.info("Fetching sample data from HackerNews database")
+        query = """
+            SELECT i.id, i.title, i.score, i.time, i.by, u.karma
+            FROM hacker_news.items i
+            LEFT JOIN hacker_news.users u ON i.by = u.id
+            WHERE i.type = 'story' AND i.score > 1
+            ORDER BY i.time DESC
+        """
+
+        hn_data: pd.DataFrame = pd.read_sql(query, conn)
+        logger.info(f"Retrieved {len(hn_data)} records for analysis")
+
+        features_df: pd.DataFrame = extract_text_features(hn_data)
+        correlation_results: pd.Series = features_df.corr().loc['score'].sort_values(ascending=False)
+
+        logger.info("Top features by correlation with score:")
+        logger.info(correlation_results.head(5))
+
+        return features_df
+
+    except Error as e:
+        logger.error(f"Database error: {e}")
+        return None
     except Exception as e:
-        logger.exception("Unexpected error")
+        logger.exception(f"Unexpected error during analysis: {e}")
+        return None
+    finally:
+        if conn is not None:
+            conn.close()
+            logger.info("Database connection closed")
 
 if __name__ == "__main__":
-    main()
+    analyse_hn_dataset()
 ```
 
-The contrast is striking. Behind this code there is also a great deal of abstracted code that can run in the hundreds of lines compared to the 8 lines needed in the previous example. Both accomplish similar tasks, but with vastly different assumptions about context and purpose.
+The contrast is striking. Behind this code there is also a great deal of abstracted code that can run in the hundreds of lines compared to the 9 lines in the previous example. Both accomplish similar tasks, but with vastly different assumptions about context and purpose.
 
 ## Documentation: embedded vs external
 
