@@ -10,7 +10,7 @@ Following last week's thoughts on the lean coding style of data scientists, my s
 
 Model collapse manifested in our search engine as all documents receiving identical similarity scores of -0.2393 regardless of their actual relevance to a query. Imagine a recommendation system suggesting the same five books to everyone—not particularly useful.
 
-Our task was building a [_two-tower neural network_](https://cloud.google.com/blog/products/ai-machine-learning/scaling-deep-retrieval-tensorflow-two-towers-architecture) ¹ that could encode queries and documents into the same embedding space, allowing us to retrieve relevant documents by finding those closest to the query. The model would learn through [_triplet loss_](https://en.wikipedia.org/wiki/Triplet_loss) ², encouraging query embeddings to be closer to relevant documents than irrelevant ones.
+Our task was building a [_two-tower neural network_](https://cloud.google.com/blog/products/ai-machine-learning/scaling-deep-retrieval-tensorflow-two-towers-architecture) ¹ that could encode queries and documents into the same [_word embedding_](https://en.wikipedia.org/wiki/Word_embedding) ² space, allowing us to retrieve relevant documents by finding those closest to the query. The model would learn through [_triplet loss_](https://en.wikipedia.org/wiki/Triplet_loss) ³, encouraging query embeddings to be closer to relevant documents than irrelevant ones.
 
 ```python
 def cosine_similarity(query, document):
@@ -59,11 +59,11 @@ WEIGHT_DECAY = 1e-5  # Added
 # Plus gradient clipping
 ```
 
-Like an overcorrection when driving, I had pushed too far in multiple directions simultaneously. I was trying to correct a divergence between [_training and validation loss_](https://medium.com/@penpencil.blr/what-is-the-difference-between-training-loss-validation-loss-and-evaluation-loss-c169ddeccd59) ³ (a classic sign of [_overfitting_](https://developers.google.com/machine-learning/crash-course/overfitting/overfitting) ⁴) with a barrage of regularisation techniques. But instead of guiding the model toward generalisation, I effectively overwhelmed it.
+Like an overcorrection when driving, I had pushed too far in multiple directions simultaneously. I was trying to correct a divergence between [_training and validation loss_](https://medium.com/@penpencil.blr/what-is-the-difference-between-training-loss-validation-loss-and-evaluation-loss-c169ddeccd59) ⁴ (a classic sign of [_overfitting_](https://developers.google.com/machine-learning/crash-course/overfitting/overfitting) ⁵) with a barrage of regularisation techniques. But instead of guiding the model toward generalisation, I effectively overwhelmed it.
 
 ## Data preparation matters
 
-The model architecture used a [_bidirectional GRU_](https://vtiya.medium.com/gru-vs-bi-gru-which-one-is-going-to-win-58a45ede5fba) ⁵ for encoding each "tower" - queries and documents:
+The model architecture used a [_bidirectional GRU_](https://vtiya.medium.com/gru-vs-bi-gru-which-one-is-going-to-win-58a45ede5fba) ⁶ for encoding each "tower" - queries and documents:
 
 ```python
 from torch import nn # PyTorch's neural network library
@@ -98,9 +98,9 @@ class TowerBase(nn.Module):
         self.dropout = nn.Dropout(dropout_rate)
 ```
 
-I chose [_GRU_](https://en.wikipedia.org/wiki/Gated_recurrent_unit) ⁶ over [_LSTM_](https://en.wikipedia.org/wiki/Long_short-term_memory) ⁷ for several reasons: better efficiency-to-performance ratio for MS MARCO's scale, simpler architecture with fewer parameters, sufficient capability for medium-length sequences, and lower memory requirements allowing larger batch sizes.
+I chose [_GRU_](https://en.wikipedia.org/wiki/Gated_recurrent_unit) ⁷ over [_LSTM_](https://en.wikipedia.org/wiki/Long_short-term_memory) ⁸ for several reasons: better efficiency-to-performance ratio for MS MARCO's scale, simpler architecture with fewer parameters, sufficient capability for medium-length sequences, and lower memory requirements allowing larger batch sizes.
 
-But the true issue lay in our dataset preparation. Here's how I was preparing _negative samples_ ⁸ for the data triplets (query, relevant document, irrelevant document):
+But the true issue lay in our dataset preparation. Here's how I was preparing _negative samples_ ⁹ for the data triplets (query, relevant document, irrelevant document):
 
 ```python
 class MSMARCOTripletDataset(Dataset):
@@ -133,7 +133,7 @@ class MSMARCOTripletDataset(Dataset):
                 self.triplets.append((query, pos_doc, neg_doc))
 ```
 
-The problem: our negative sampling (the "irrelevant" documents) was taking documents from the "not selected" list of that same query in the MS MARCO dataset, but these "negative" documents could actually be very relevant to the original query, rather than being subtly irrelevant. It turns out the reason why these documents are labelled as "not selected" is because Microsoft's Bing did not use them to formulate the answer for the user, not necessarily becuase it is a [_hard negative_](https://medium.com/@sundardell955/hard-negative-mining-91b5792259c5) ⁹. When using triplet loss, the model learns by comparing distances (described above). If many of our supposed "irrelevant" documents were actually relevant, the model couldn't establish a clear decision boundary.
+The problem: our negative sampling (the "irrelevant" documents) was taking documents from the "not selected" list of that same query in the MS MARCO dataset, but these "negative" documents could actually be very relevant to the original query, rather than being subtly irrelevant. It turns out the reason why these documents are labelled as "not selected" is because Microsoft's Bing did not use them to formulate the answer for the user, not necessarily becuase it is a [_hard negative_](https://medium.com/@sundardell955/hard-negative-mining-91b5792259c5) ¹⁰. When using triplet loss, the model learns by comparing distances (described above). If many of our supposed "irrelevant" documents were actually relevant, the model couldn't establish a clear decision boundary.
 
 To fix this, I used randomly selected documents from unrelated queries as negative samples, and treated all documents from the same query (whether "selected" or not) as positive samples. This would mean hard negative mining would need to take place afterwards as a mostly manual process.
 
@@ -155,7 +155,7 @@ WEIGHT_DECAY = 0 # removed
 DROPOUT_RATE = 0.3
 ```
 
-By removing [_weight decay_](https://paperswithcode.com/method/weight-decay) ¹⁰, returning the _margin_ ¹¹ and [_learning rate_](https://en.wikipedia.org/wiki/Learning_rate) ¹² to their original values, and keeping just a moderate [_dropout rate_](https://medium.com/biased-algorithms/the-role-of-dropout-in-neural-networks-fffbaa77eee7) ¹³, the model began learning effectively again. However, the [_gradient clipping_](https://medium.com/data-science/what-is-gradient-clipping-b8e815cdfb48) ¹⁴ proved useful in isolation. This simplification, combined with proper embedding initialisation and real negative sampling (albeit without using any hard negatives), brought our document retrieval system back from the brink. The final trained model ran for 11 epochs and yielded a validation accuracy of 99.04%.
+By removing [_weight decay_](https://paperswithcode.com/method/weight-decay) ¹¹, returning the _margin_ ¹² and [_learning rate_](https://en.wikipedia.org/wiki/Learning_rate) ¹³ to their original values, and keeping just a moderate [_dropout rate_](https://medium.com/biased-algorithms/the-role-of-dropout-in-neural-networks-fffbaa77eee7) ¹⁴, the model began learning effectively again. However, the [_gradient clipping_](https://medium.com/data-science/what-is-gradient-clipping-b8e815cdfb48) ¹⁵ proved useful in isolation. This simplification, combined with proper embedding initialisation and real negative sampling (albeit without using any hard negatives), brought our document retrieval system back from the brink. The final trained model ran for 11 epochs and yielded a validation accuracy of 99.04%.
 
 ## Finding balance
 
@@ -167,17 +167,32 @@ The most elegant solution isn't the most engineered one—it's the one that give
 
 ## Glossary
 
-1. **Two Tower Architecture**: Separate encoders for queries and documents to handle their different structures
-2. **Triplet Loss**: Trains model to minimise distance between query and relevant documents while maximising distance to irrelevant ones
-3. **Training vs Validation Loss**: Training loss measures model performance on training data; validation loss measures it on unseen data to detect overfitting
-4. **Overfitting**: When a model performs well on training data but poorly on new data because it's learned noise instead of patterns
-5. **Bidirectional GRU**: Combines GRU architecture with bidirectional processing to capture context from both past and future tokens
-6. **GRU (Gated Recurrent Unit)**: An RNN variant that better manages information flow using gates
-7. **LSTM (Long Short-Term Memory)**: An RNN variant with additional cell state to preserve long-term information
-8. **Negative Sampling**: Randomly selecting irrelevant documents to make training manageable
-9. **Hard Negative**: Challenging irrelevant document that is semantically similar to the query, making it difficult to distinguish from truly relevant documents
-10. **Weight Decay**: Regularisation technique that penalises large weights to prevent overfitting
-11. **Margin**: Parameter in triplet loss that defines the minimum desired difference between relevant and irrelevant document distances
-12. **Learning Rate**: Controls how much model parameters change during each update step
-13. **Dropout rate**: Regularisation technique that randomly disables neurons during training to prevent overfitting
-14. **Gradient Clipping**: Prevents exploding gradients by limiting maximum gradient values during training
+1. **Two Tower Architecture**: Separate encoders for queries and documents to handle their different structures. Think of it as two parallel roads leading to the same destination - separate neural networks that eventually meet in the same embedding space.
+
+2. **Word Embedding**: Vector representation of words that captures semantic meaning. This is teaching the machine that "dog" and "puppy" live in the same neighborhood in vector space.
+
+3. **Triplet Loss**: Trains model to minimise distance between query and relevant documents while maximising distance to irrelevant ones. It's the mathematical way of telling our model "this document belongs with this query, but that one doesn't."
+
+4. **Training vs Validation Loss**: Training loss measures model performance on training data; validation loss on unseen data. It's like practicing for an exam with the textbook open versus taking a mock exam that shows if you've actually learnt anything.
+
+5. **Overfitting**: When a model performs well on training data but poorly on new data. It's memorising test answers rather than understanding the subject.
+
+6. **Bidirectional GRU**: Combines GRU architecture with bidirectional processing. Reads text forwards AND backwards simultaneously, much like how we might scan a document in both directions to grasp its meaning fully.
+
+7. **GRU (Gated Recurrent Unit)**: An RNN variant that manages information flow using gates. A more efficient cousin of LSTM that handles sequential data with fewer parameters.
+
+8. **LSTM (Long Short-Term Memory)**: An RNN variant with additional cell state to preserve long-term information. The classic solution for processing sequences that need long-term memory.
+
+9. **Negative Sampling**: Randomly selecting irrelevant documents to make training manageable. Finding good counter-examples is crucial for the model to learn meaningful distinctions.
+
+10. **Hard Negative**: Challenging irrelevant document that is semantically similar to the query. These are the trickiest examples that really test if your model is learning properly.
+
+11. **Weight Decay**: Regularisation technique that penalises large weights. It's like adding a bit of healthy scepticism to the learning process, preventing parameters from becoming too confident.
+
+12. **Margin**: Parameter in triplet loss that defines the minimum desired difference between distances. The breathing room between relevant and irrelevant documents - too small and everything blurs together.
+
+13. **Learning Rate**: Controls how much model parameters change during each update. How big of steps we take during training - crucial to get right or we risk overshooting repeatedly.
+
+14. **Dropout**: Regularisation technique that randomly disables neurons during training. Forces the network to be more robust rather than relying on a few dominant pathways.
+
+15. **Gradient Clipping**: Prevents exploding gradients by limiting maximum values. Like having speed limiters on a car to prevent it from accelerating uncontrollably.
