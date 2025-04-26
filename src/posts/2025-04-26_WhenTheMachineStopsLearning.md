@@ -155,7 +155,7 @@ WEIGHT_DECAY = 0 # removed
 DROPOUT_RATE = 0.3
 ```
 
-By removing [_weight decay_](https://paperswithcode.com/method/weight-decay) ¹⁰, returning the _margin_ ¹¹ and [_learning rate_](https://en.wikipedia.org/wiki/Learning_rate) ¹² to their original values, and keeping just a moderate [_dropout rate_](https://medium.com/biased-algorithms/the-role-of-dropout-in-neural-networks-fffbaa77eee7) ¹³, the model began learning effectively again. The [_gradient clipping_](https://medium.com/data-science/what-is-gradient-clipping-b8e815cdfb48) ¹⁴, however, proved useful in isolation. This simplification, combined with proper embedding initialisation and real negative sampling (albeit without using any hard negatives), brought our document retrieval system back from the brink. The final trained model ran for 11 epochs and yielded a validation accuracy of 99.04%.
+By removing [_weight decay_](https://paperswithcode.com/method/weight-decay) ¹⁰, returning the _margin_ ¹¹ and [_learning rate_](https://en.wikipedia.org/wiki/Learning_rate) ¹² to their original values, and keeping just a moderate [_dropout rate_](https://medium.com/biased-algorithms/the-role-of-dropout-in-neural-networks-fffbaa77eee7) ¹³, the model began learning effectively again. However, the [_gradient clipping_](https://medium.com/data-science/what-is-gradient-clipping-b8e815cdfb48) ¹⁴ proved useful in isolation. This simplification, combined with proper embedding initialisation and real negative sampling (albeit without using any hard negatives), brought our document retrieval system back from the brink. The final trained model ran for 11 epochs and yielded a validation accuracy of 99.04%.
 
 ## Finding balance
 
