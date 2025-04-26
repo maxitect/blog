@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 
 def analyse_hn_dataset() -> Optional[pd.DataFrame]:
     """
-    Analyzes Hacker News dataset by extracting text features and calculating correlations with post scores.
+    Analyses Hacker News dataset by extracting text features and calculating correlations with post scores.
 
     Returns:
         DataFrame with extracted features, or None if an error occurs.
@@ -60,7 +60,13 @@ def analyse_hn_dataset() -> Optional[pd.DataFrame]:
         db_params: Dict[str, str] = config.get_db_params()
 
         logger.info("Connecting to HackerNews database")
-        conn = psycopg.connect("postgresql://sy91dhb:g5t49ao@178.156.142.230:5432/hd64m1ki")
+        conn = psycopg.connect(
+            host=db_params["host"],
+            database=db_params["database"],
+            user=db_params["user"],
+            password=db_params["password"],
+            port=db_params["port"]
+        )
 
         logger.info("Fetching sample data from HackerNews database")
         query = """
