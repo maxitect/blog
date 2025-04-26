@@ -4,7 +4,7 @@ date: "2025-04-26"
 tags: ["machine learning", "neural networks", "debugging", "ai"]
 ---
 
-Following last week's thoughts on the lean coding style of data scientists, my second week at the Machine Learning Institute has involved a lot of debugging neural networks. I experienced the fascinating yet frustrating phenomenon of model collapse whilst working on a search engine using the [MS MARCO](https://microsoft.github.io/msmarco/) dataset. This highlighted not just technical pitfalls, but the iterative nature of machine learning development.
+Following last week's thoughts on the lean coding style of data scientists, my second week at the Machine Learning Institute has been about debugging neural networks. Much like in E.M. Forster's "The Machine Stops" where humanity faces crisis when their life-sustaining technology fails, I experienced the fascinating yet frustrating phenomenon of [model collapse](https://en.wikipedia.org/wiki/Model_collapse) whilst working on a document retrieval system using the [MS MARCO dataset](https://microsoft.github.io/msmarco/). When the neural network _stopped learning_, it highlighted not just technical pitfalls, but the iterative nature of machine learning development and our growing dependence on these systems functioning correctly.
 
 ## When it all collapses
 
