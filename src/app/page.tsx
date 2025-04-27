@@ -5,7 +5,7 @@ export default function Home() {
   const posts = getAllPosts();
   return (
     <>
-      <h1>Welcome to Maxitect&apos;s blog</h1>
+      <h1>Welcome to Maxitect Blog</h1>
       <p>
         Hi! I&apos;m Max, an architect/computational designer turned software
         developer/data scientist. This is where I dump my thoughts on various

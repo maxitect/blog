@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Maxitect's Blog",
+  title: "Maxitect Blog",
   description:
     "Max is a former architect turned software engineer. He blogs about topics related to computational design, software, data science and more.",
 };
