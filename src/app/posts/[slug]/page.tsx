@@ -3,10 +3,30 @@ import PostContent from "@/components/PostContent";
 import Image from "next/image";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import Date from "@/components/Date";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<Record<string, string>>;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found | Maxitect Blog",
+    };
+  }
+
+  return {
+    title: `${post.title} | Maxitect Blog`,
+  };
 }
 
 export function generateStaticParams() {
