@@ -1,6 +1,7 @@
 ---
 title: "When The Machine Stops Learning: Reviving a Collapsed Neural Network"
 date: "2025-04-26"
+github: "https://github.com/maxitect/search-engine"
 tags: ["machine learning", "neural networks", "debugging", "ai"]
 ---
 
