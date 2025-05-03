@@ -1,6 +1,7 @@
 ---
 title: "When Less Is More: Coding Like a Data Scientist"
 date: "2025-04-19"
+github: "https://github.com/maxitect/upvote-predictor-analysis"
 tags: ["data science", "machine learning", "best practice", "software"]
 ---
 
