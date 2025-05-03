@@ -53,7 +53,7 @@ export default async function PostPage({ params }: PageProps) {
                 target="_blank"
                 className="inline-block border-2 border-foreground hover:bg-blue-600 py-2 px-4 transition-colors"
               >
-                Visit the repo
+                Explore the repo
               </Link>
             )}
           </div>
