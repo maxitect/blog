@@ -8,9 +8,9 @@ interface PostContentProps {
 
 const PostContent: React.FC<PostContentProps> = ({ content }) => {
   return (
-    <ReactMarkdown components={{ code: CodeBlock }}>
-      {content}
-    </ReactMarkdown>
+    <div className="markdown">
+      <ReactMarkdown components={{ code: CodeBlock }}>{content}</ReactMarkdown>
+    </div>
   );
 };
 
