@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import Date from "@/components/Date";
 import { Metadata } from "next";
+import Link from "next/link";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -39,12 +40,23 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   return (
-    <article className="mx-auto markdown">
+    <article className="mx-auto">
       <div className="flex flex-wrap gap-8 mb-10">
         <div className="flex-1 min-w-64">
           <h1>{post.title}</h1>
           <hr />
-          <Date date={post.date} />
+          <div className="flex flex-wrap justify-between items-center">
+            <Date date={post.date} />
+            {post.github && (
+              <Link
+                href={post.github}
+                target="_blank"
+                className="inline-block border-2 border-foreground hover:bg-blue-600 py-2 px-4 transition-colors"
+              >
+                Visit the repo
+              </Link>
+            )}
+          </div>
         </div>
         {post.imagePath && (
           <div className="md:ml-auto min-w-64">
@@ -52,6 +64,7 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         )}
       </div>
+
       <PostContent content={post.content} />
     </article>
   );
