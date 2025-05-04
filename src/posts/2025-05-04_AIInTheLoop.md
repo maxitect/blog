@@ -90,7 +90,7 @@ Participants primarily worked individually with AI rather than in teams, coming 
 
 Moving through the subsequent phases (Design & Architecture and Planning) participants continued this pattern of individual work followed by group discussion. Some fed their specs to more powerful models like _OpenAI_'s o3, setting its persona to "expert Software Architect" and debating the AI's suggestions based on their own experience. We encouraged those with less expertise to continuously question the AI about decisions it wants you to make in order to understand and be able to make an informed judgement. The Planning phase yielded task lists that became prompt scripts for implementation, though few reached this final stage within the workshop timeframe.
 
-During implementation, we encouraged participants to move to the CLI, using tools like _Aider_ or _Claude Code_. Some participants were already familiar with AI-assisted code editors such as Cursor or Windsurf and opted to continue in those environments, while others did brave the command line. From these interfaces, they were able to follow the prompt plan generated in the previous phase and reached diferent levels of success with it. During this phase, we stressed the importance of following the 4 actions, particularly the review part - no line of code should be commited until you understand what it does.
+During implementation, we encouraged participants to move to the CLI, using tools like _Aider_ or _Claude Code_. Some participants were already familiar with AI-assisted code editors such as _Cursor_ or _Windsurf_ and opted to continue in those environments, while others did brave the command line. From these interfaces, they were able to follow the prompt plan generated in the previous phase and reached diferent levels of success with it. During this phase, we stressed the importance of following the 4 actions, particularly the review part - no line of code should be commited until you understand what it does.
 
 Given the intensive nature of the process, most participants were unable to complete their projects during the workshop. Some showed impressive progress with partially functioning applications, while others indicated they would continue using the HULA workflow at home to complete their project. This outcome wasn't surprising - the framework is thorough and demands significant mental engagement at each stage.
 
@@ -110,7 +110,7 @@ If we keep human creativity and judgement at the centre while embracing what AI 
 
 ## Sources
 
-A curated list of sources we used to develop the HULA framework:
+A curated list of sources we referred to in developing the HULA framework:
 
 - [Ethan Mollick - _Co-Intelligence_](https://www.penguin.co.uk/books/460207/co-intelligence-by-mollick-ethan/9780753560778)
 - [Ethan Mollick - _A new generation of AIs_](https://open.substack.com/pub/oneusefulthing/p/a-new-generation-of-ais-claude-37?r=16cm69&utm_medium=ios)
