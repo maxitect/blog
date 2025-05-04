@@ -23,7 +23,7 @@ hn_data['title_length'] = hn_data.title.str.len()
 hn_data[['title_length', 'score']].corr()
 ```
 
-Had this been my code, I'd have included error handling, logging, type hints, thorough documentation, and probably split it into multiple functions. What's worse, I'd have probably written a whole spec on how to write it before even starting. But here was the stark reality: this approach was _perfect_ for learning. While my software engineer instincts screamed for more structure, I realised this stripped-down style kept the focus exactly where it needed to be—on understanding the machine learning concepts, not the surrounding code architecture. It is about expressing that logic through simple code.
+Had this been my code, I'd have included error handling, logging, type hints, thorough documentation, and probably split it into multiple functions. What's worse, I'd have probably written a whole spec on how to write it before even starting. However it becomes clear that this is all over-engineering and that this approach was ideal for learning. While my software engineer instincts screamed for more structure, I realised this stripped-down style kept the focus exactly where it needed to be—on understanding the machine learning concepts, not the surrounding code architecture. It is about expressing that logic through simple code.
 
 ## Different priorities, different practices
 
