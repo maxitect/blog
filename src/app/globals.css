@@ -97,6 +97,10 @@ ol {
   @apply pl-8 list-decimal space-y-2 my-4;
 }
 
+ul {
+  @apply pl-8 list-disc space-y-2 my-4;
+}
+
 ol li {
   @apply pl-2;
 }
@@ -107,6 +111,11 @@ ol ol {
 
 ol ol ol {
   @apply list-[lower-roman];
+}
+
+/* First level nested list - reduce spacing between parent and child */
+ol li ul {
+  @apply pl-4 list-disc my-2 !space-y-0;
 }
 
 /* Inline code styling */
