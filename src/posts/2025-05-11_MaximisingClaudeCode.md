@@ -102,7 +102,7 @@ ALWAYS follow these steps when reviewing code:
 
 ## When reality meets expectations
 
-My experience with `CLAUDE.md` has been somewhat mixed. When I explicitly direct Claude to reference it, the results align well with expectations. Prompts like "Review our `CLAUDE.md` file before proceeding" or "What does `CLAUDE.md` say about our testing strategy?" yield good results.
+My experience with `CLAUDE.md` has been somewhat mixed. When I explicitly direct Claude to reference it, the results align well with expectations. Prompts like _"Review our `CLAUDE.md` file before proceeding."_ or _"Follow the review process described in `CLAUDE.md`."_ yield good results.
 
 However, the automatic reference that Anthropic suggests hasn't been as reliable as advertised. During a recent project at [Tandem](https://runintandem.com/), our co-founder Jack noted:
 
