@@ -2,7 +2,7 @@
 title: "AI in the Loop: Reflections on Delivering the HULA Workshops at Founders & Coders"
 date: "2025-05-04"
 github: "https://github.com/maxitect/multi-agent"
-tags: ["ai", "software development", "workshops"]
+tags: ["ai", "software", "workshops"]
 ---
 
 A month ago, I had the chance to facilitate a workshop series at [Founders & Coders](https://www.foundersandcoders.com/) with Jack Casstles-Jones, my co-facilitator, introducing developers to a new approach for building software with AI as a partner. The room was filled with developers of varying experience levels, all curious about how AI might change their day-to-day work. In preparation for these sessions, we spent time researching and experimenting with different ways of bringing AI into the software process, with the idea being that it would enhance your learning rather than atrophying your skills. What we ended up with was quite an elaborate framework which we decided to call the HULA (Human-in-the-Loop) framework, a term we "borrowed" as it is already being [used in AI and ML](https://cloud.google.com/discover/human-in-the-loop) with a slightly different meaning. Over several sessions, we continued to develop this framework from constant feedback given to us by the attendees who tested it themselves. This month, we are starting these up again to explore agentic workflows and more, so it is a good moment for me to look back and reflect on the first iteration of these.

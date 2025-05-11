@@ -2,7 +2,7 @@
 title: "When Less Is More: Coding Like a Data Scientist"
 date: "2025-04-19"
 github: "https://github.com/maxitect/upvote-predictor-analysis"
-tags: ["data science", "machine learning", "best practice", "software"]
+tags: ["data science", "machine learning", "best practices", "software"]
 ---
 
 Having recently embarked on a machine learning bootcamp at the Machine Learning Institute (MLX), I've been struck by a fascinating contrast in coding styles. Having formally trained in software engineering quite recently, I felt a strange dissonance working with data scientists and how they write their Python code. It was so... lean. Almost sparse compared to the robust, defensive code I'm accustomed to writing. This observation sparked some interesting reflections about the different approaches these two disciplines take to solving problems.

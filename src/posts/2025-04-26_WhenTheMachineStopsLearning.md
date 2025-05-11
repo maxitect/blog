@@ -2,7 +2,7 @@
 title: "When The Machine Stops Learning: Reviving a Collapsed Neural Network"
 date: "2025-04-26"
 github: "https://github.com/maxitect/search-engine"
-tags: ["machine learning", "neural networks", "debugging", "ai"]
+tags: ["machine learning", "data science", "debugging", "ai"]
 ---
 
 Following last week's thoughts on the lean coding style of data scientists, my second week at the Machine Learning Institute has been about debugging neural networks. Much like in E.M. Forster's _The Machine Stops_ where humanity faces crisis when their life-sustaining technology fails, I experienced the fascinating yet frustrating phenomenon of [model collapse](https://en.wikipedia.org/wiki/Model_collapse) whilst working on a search engine system using the [MS MARCO dataset](https://microsoft.github.io/msmarco/). When the neural network _stopped learning_, it highlighted not just technical pitfalls, but the iterative nature of machine learning development.
