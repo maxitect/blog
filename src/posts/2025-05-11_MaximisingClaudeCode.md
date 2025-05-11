@@ -174,7 +174,7 @@ npm run test:coverage
 
 Then explicitly ask Claude to use them: _"Generate and run tests according to our `CLAUDE.md` standards."_
 
-## Finding the balance, and it's relevant to any environment you use AI in
+## Finding the balance, in any environment where you use AI
 
 While `CLAUDE.md` may not be the automatic guide that Anthropic presents it as, it remains a valuable tool for standardising AI-assisted development when used with intention. It's rather like working with a junior developer who needs regular reminders about the team's standards - potentially very helpful, but requiring consistent guidance.
 
@@ -182,6 +182,6 @@ Think of `CLAUDE.md` as a compact standards document that requires deliberate re
 
 The most effective approach I've found is creating a well-structured, concise `CLAUDE.md` file, consistently directing Claude to reference it, and leveraging Claude itself to evolve the document as your project develops. The key is vigilance and explicit prompting rather than assuming automatic compliance.
 
-This approach isn't exclusive to Claude Code and `CLAUDE.md`. I've been using variations of a `STANDARDS.md` file with _Aider_, OpenAI's _Codex_ and raw Claude conversations with similar benefits. Having a central standards document that you can prompt your AI to review before writing any code will save you hours refactoring the inevitable AI spaghetti. I'm confident this approach works equally well with popular AI code editors like _Cursor_ and _Windsurf_. The fundamental truth is that if you don't tell AI tools how to write your code, they'll make countless invisible decisions on your behalf, from which frustration almost always ensues.
+This approach isn't exclusive to Claude Code and `CLAUDE.md`. I've been using variations of a `STANDARDS.md` file with _Aider_, OpenAI's _Codex_ and as a project reference in 'raw' Claude with similar benefits. Having a central standards document that you can prompt your AI to review before writing any code will save you hours refactoring the inevitable AI spaghetti. I'm confident this approach works equally well with popular AI code editors like _Cursor_ and _Windsurf_. The fundamental truth is that if you don't tell AI tools how to write your code, they'll make countless invisible decisions on your behalf, from which frustration almost always ensues.
 
 As with most AI tools, the magic happens when you find the right balance of human guidance and AI assistance. `CLAUDE.md` is no exception - it's not quite the seamless experience promised, but with the right approach, it can significantly enhance your AI-assisted development workflow.
