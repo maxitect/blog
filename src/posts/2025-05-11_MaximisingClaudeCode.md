@@ -9,7 +9,7 @@ Claude Code has been touted as a powerful AI-assisted development tool, and acco
 
 Read all about [Claude Code's best practice on Anthropic's website](https://www.anthropic.com/engineering/claude-code-best-practices).
 
-[Check out my `CLAUDE.md` template here](https://github.com/maxitect/claudemd-template/blob/main/CLAUDE.md).
+If you want to get started, check out [my `CLAUDE.md` template](https://github.com/maxitect/claudemd-template/blob/main/CLAUDE.md).
 
 ## Anthropic's claims
 
