@@ -26,7 +26,7 @@ Here's my recommended structure:
 ```markdown
 ## Project Overview
 
-A concise description of what the project does and its primary goals. Keep this to 2-3 sentences maximum.
+A brief description of the project, its purpose, and key goals.
 ```
 
 The tech stack section provides crucial context:
@@ -83,21 +83,21 @@ I've found the review process section to be perhaps the most critical part of th
 ```markdown
 ## Review Process Guidelines
 
-ALWAYS follow these steps when reviewing code:
+Before submitting any code, ensure the following steps are completed:
 
-1. Run lint commands first:
-   npm run lint
+1. **Run all lint, check and test commands**
 
-2. Run check commands next:
-   npm run typecheck
+2. **Review outputs and iterate until all issues are resolved**
 
-3. Review outputs and iterate until all issues are resolved
+3. **Assess compliance**:
+   For each standard, explicitly state ✅ or ❌ and explain why:
 
-4. Self-review checklist:
-   - Code follows defined patterns
-   - Error handling implemented
-   - Tests written and passing
-   - Documentation updated
+   - Code style and formatting
+   - Naming conventions
+   - Architecture patterns
+   - Error handling
+   - Test coverage
+   - Documentation
 ```
 
 ## When reality meets expectations
@@ -155,24 +155,6 @@ I've found these prompting patterns to be particularly effective:
 4. **Compile learning**: _"Based on this review, what standards should we add to `CLAUDE.md`?"_
 
 Balance comprehensive coverage with brevity. A focused 150-line CLAUDE.md that Claude can fully process is far more effective than a 300-line document it only partially references.
-
-## Testing integration
-
-For testing, include clear commands that Claude can execute:
-
-```markdown
-# Testing Commands
-
-# Run unit tests
-
-npm test
-
-# Check test coverage
-
-npm run test:coverage
-```
-
-Then explicitly ask Claude to use them: _"Generate and run tests according to our `CLAUDE.md` standards."_
 
 ## Finding the balance, in any environment where you use AI
 
