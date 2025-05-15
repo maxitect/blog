@@ -9,6 +9,8 @@ This week, I attended a fascinating workshop at [Founders & Coders](https://www.
 
 What I ended up with was a Telegram RAG chatbot that indexes my blog posts and provides contextual answers. It's turned out to be a surprisingly effective tool for testing RAG concepts, and building it taught me valuable lessons about chunking strategies, prompt engineering, and the practical differences between building document retrieval systems from scratch versus using modern libraries.
 
+If you want to check it out, [speak to my bot here](https://t.me/maxitect_bot).
+
 ## From training neural networks to off-the-shelf solutions
 
 In my previous post, [When the Machine Stops Learning](/posts/when-the-machine-stops-learning-reviving-a-collapsed-neural-network), I wrote about building a document retrieval system from scratch using neural networks and the MS MARCO dataset. That was an excellent learning exercise - understanding how embeddings work, implementing cosine similarity, and debugging collapsed models. But when you need to build something that actually works reliably, sometimes the best approach is to stand on the shoulders of giants.
