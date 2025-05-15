@@ -5,7 +5,7 @@ github: "https://github.com/maxitect/telegram-rag-chatbot"
 tags: ["ai", "software", "workshops", "machine learning"]
 ---
 
-This week, I attended a fascinating workshop at [Founders & Coders](https://www.foundersandcoders.com/) led by a RAG and AI agent expert from Neo4j. The timing couldn't have been better - at [Tandem](https://runintandem.com/), we're working on an AI IT helpdesk bot for Teams that will answer employee questions based on internal documents and create helpdesk tickets when human intervention is needed. Rather than diving straight into complex enterprise solutions, I decided to build a simpler version first to understand the fundamentals properly.
+This week, I attended a fascinating workshop at [Founders & Coders](https://www.foundersandcoders.com/) led by a RAG and AI agent expert from Neo4j. I decided to attend because at [Tandem](https://runintandem.com/), we're working on an AI IT helpdesk bot for Teams that will answer employee questions based on internal documents and create helpdesk tickets when human intervention is needed. Rather than diving straight into complex enterprise solutions, I decided to build a simpler version first to understand the fundamentals properly.
 
 What I ended up with was a Telegram RAG chatbot that indexes my blog posts and provides contextual answers. It's turned out to be a surprisingly effective tool for testing RAG concepts, and building it taught me valuable lessons about chunking strategies, prompt engineering, and the practical differences between building document retrieval systems from scratch versus using modern libraries.
 
