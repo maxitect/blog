@@ -40,7 +40,7 @@ This was factually correct but not relevant - there is nothing about strawberrie
 The issue was that it was too vague. The instruction "If the context doesn't contain relevant information, say so" wasn't precise enough to prevent the AI from falling back on its general knowledge. After several iterations, I settled on this more targeted version:
 
 ```markdown
-Based on the context provided below, extracted from the results from
+Based on the context provided below, extracted from the results of
 this query: {message}, answer the user's question. If the context
 doesn't contain relevant information, say so. Do not try to make
 anything up or infer additional information than the context provided.
