@@ -22,6 +22,8 @@ export interface Post {
   imagePath?: string;
   /** GitHub link */
   github?: string;
+  /** Tags for filtering posts */
+  tags?: string[];
 }
 
 function slugify(text: string): string {
@@ -79,6 +81,7 @@ export function getAllPosts(): Post[] {
       preview,
       ...(imageExists ? { imagePath } : {}),
       github: data.github,
+      tags: data.tags,
     };
   });
   return posts.sort(
