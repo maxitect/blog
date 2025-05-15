@@ -213,4 +213,6 @@ What struck me most was how accessible RAG has become. ChromaDB handles the comp
 
 This isn't about avoiding learning fundamentals - understanding how embeddings and neural networks function (as in my previous post) remains valuable. Rather, it's about choosing the right tool for the task. Sometimes you need to build the engine; sometimes you just need to drive.
 
+This prototype came together in a single day, and it’s intentionally lean. There’s no confidence thresholding, no reranking of retrievals, no formal evaluation - just structured prompts and a willingness to iterate. But even at this early stage, it surfaced key behaviours worth formalising later. The simplicity was a constraint, not a flaw, and that constraint helped highlight what actually matters in getting a chatbot to stay quiet when it should.
+
 For anyone considering RAG applications, I'd recommend starting with a simple prototype like this. It's remarkably enlightening to see how quickly you can go from idea to functional system, and the lessons learned scale directly to more complex enterprise applications.
