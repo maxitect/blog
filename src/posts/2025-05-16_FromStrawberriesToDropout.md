@@ -19,7 +19,7 @@ This project represents the opposite philosophy: leverage proven libraries, pre-
 
 Given my recent exploration of [AI-assisted development](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders), I decided to lean on AI to help build this RAG chatbot to accelerate the process and my learning. I followed the IQRE methodology I'd been advocating: **Iterate**, **Question**, **Review/Create**, and **Explain**. This proved particularly valuable when refining the system's prompt engineering.
 
-Initially, when AI wrote the basic OpenAI client module, it suggested this prompt for the RAG system:
+Initially, when AI generated a boilerplate OpenAI client module, it suggested this prompt for the RAG system:
 
 ```markdown
 You are a helpful assistant. Use the following context to answer the
