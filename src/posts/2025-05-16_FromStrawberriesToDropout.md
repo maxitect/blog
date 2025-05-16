@@ -39,7 +39,7 @@ This seemed reasonable at first glance. However, the bot was still drawing on it
 
 This was factually correct but not relevant - there is nothing about strawberries in my blog posts (at least until now!). The bot was essentially reverting to general ChatGPT behaviour rather than staying within the retrieved context.
 
-The issue was that it was too vague. The instruction "If the context doesn't contain relevant information, say so" wasn't precise enough to prevent the AI from falling back on its general knowledge. After several iterations, I settled on this more targeted version:
+The issue was that the instruction was too weak to prevent the AI from falling back on its general knowledge. After several iterations, I settled on this more targeted version:
 
 ```markdown
 Based on the context provided below, extracted from the results of
