@@ -69,20 +69,16 @@ However, participants questioned this approach. If the context window is preciou
 
 Rather than maintaining individual `HISTORY.md` files as we'd suggested, one three-developer team created a living `TICKETS.md` document that evolved throughout development:
 
-```
-SETUP-1 ─┬─ SETUP-2 ────── UI-4 ────────────────────┐
-         │                                          │
-         │                               ┌── UI-3 ──┼─ FUNC-1A ── FUNC-1B ── ENH-1 ── ENH-2 ── TEST-1
-         │                               │          │
-         └─ DATA-1 ─┬─ DATA-2A ── UI-1 ─ UI-2 ──────┼─ FUNC-2 ── ENH-3 ─────────────┘
-                    │                               │
-                    └─ DATA-2B ───────────────┘     │
-                    │                               │
-                    └─ DATA-2C ───────────────────┘ │
-                                                     │
-                                                     └─ FINAL-1
-
-                                                     └─ FINAL-2
+```src
+SETUP-1 ─── SETUP-2 ────────────── UI-4 ──┐
+  │                                       │
+  │                                UI-3 ──┼── FUNC-1A ── FUNC-1B ── ENH-1 ── ENH-2 ─┬─ TEST-1
+  │                                  │    │                                         │
+  └─ DATA-1 ─┬─ DATA-2A ── UI-1 ── UI-2 ──┼── FUNC-2 ────────────── ENH-3 ──────────┤
+             │                            │                                         │
+             ├─ DATA-2B ──────────────────┤                                         ├─ FINAL-1
+             │                            │                                         │
+             └─ DATA-2C ──────────────────┘                                         └─ FINAL-2
 ```
 
 This wasn't a static dependency chart. The team continuously updated ticket statuses, subdivided bottleneck tasks, and "locked" dependencies in real-time. When `DATA-2: Create Svelte Stores` became a blocking issue, they immediately split it into atomic components (`DATA-2A: Basic Tasks Store`, `DATA-2B: UI State Store`, `DATA-2C: Derived Stores`) to enable parallel progress.
