@@ -47,7 +47,7 @@ Demonstrate your understanding by explaining what each key section does
 
 As one participant noted:
 
-> "I think that it's fundamental to learn how to use AI as a peer for peer programming, and, even more important, to do it in a repeatable and consistent way so that collaboration in teams is possible. This workshop gives you a workflow that you can use yourself to always be in control of your code, and share with your team." "The range of prompts was much greater than what I've been using. I will definitely be taking a lot of these into my daily use of AI, particularly the history prompt."
+> "I think that it's fundamental to learn how to use AI as a peer for peer programming, and, even more important, to do it in a repeatable and consistent way so that collaboration in teams is possible. This workshop gives you a workflow that you can use yourself to always be in control of your code, and share with your team."
 
 ## Shared Specifications: The Foundation of Team AI Coordination
 
