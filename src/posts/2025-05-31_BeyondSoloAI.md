@@ -163,3 +163,9 @@ This approach scales through emerging technologies. Model Context Protocol provi
 As one participant noted: **"Working in pairs was perfect; larger teams would have been extremely messy"**. However, this raises interesting questions about optimal team sizes and whether additional coordination mechanisms might enable larger teams to work effectively.
 
 The future of team development lies not in replacing human coordination with AI, but in developing orchestration frameworks that leverage AI capabilities whilst preserving human architectural control. The teams that master these practices early will have significant advantages as AI assistance becomes ubiquitous in software development.
+
+---
+
+**Interested in exploring AI team coordination at your organisation?** We're currently running these workshops weekly in London on an invitation-only basis for development teams from larger organisations. If you're working in an enterprise environment and facing challenges with AI adoption or team coordination, I'd be keen to hear about your specific situation.
+
+Drop me a line at [max@rfoundersandcoders.com](mailto:max@foundersandcoders.com) or reach out on [my LinkedIn profile](www.linkedin.com/in/maxime-downe-642ba74b) - mention your current AI experience level and the particular challenges your team is navigating. These sessions work best when we can tailor the content to real organisational needs rather than hypothetical scenarios.

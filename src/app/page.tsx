@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <h1>Welcome to Maxitect Blog</h1>
       <p className="markdown">
-        Hello! I’m{" "}
+        Hello! I&apos;m{" "}
         <Link
           href="https://linkedin.com/in/maxime-downe-642ba74b"
           role="link"
@@ -34,12 +34,31 @@ export default function Home() {
         to building web and AI-powered applications that solve real-world
         problems.
       </p>
-      <p>
-        These days, I&apos;m fascinated by the intersection of computational
-        design and modern web development. Whether I&apos;m debugging collapsed
-        neural networks, experimenting with AI-assisted coding workflows, or
-        building search engines from scratch, there&apos;s always something
-        interesting to unpack.
+      <p className="markdown">
+        Currently on the Founders programme at{" "}
+        <Link
+          href="https://foundersandcoders.com"
+          role="link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Founders and Coders website"
+        >
+          Founders & Coders
+        </Link>{" "}
+        and co-founder of{" "}
+        <Link
+          href="https://runintandem.com"
+          role="link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Tandem Creative Dev website"
+        >
+          Tandem Creative Dev
+        </Link>
+        , I&apos;m fascinated by the intersection of computational design and
+        modern web development. Whether I&apos;m debugging collapsed neural
+        networks, experimenting with AI-assisted coding workflows, or building
+        RAG chatbots, there&apos;s always something interesting to unpack.
       </p>
       <p>
         On this blog, you&apos;ll find my thoughts on everything from the lean
