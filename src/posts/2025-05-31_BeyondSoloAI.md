@@ -51,7 +51,7 @@ As one participant noted:
 
 ## Shared Specifications: The Foundation of Team AI Coordination
 
-Working with multiple AI instances exposed the critical importance of shared specifications, the content of some of these specs are discussed in more detail in my previous [AI in the loop](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders). Teams established comprehensive [`CLAUDE.md`](/posts/maximising-claude-code-building-an-effective-claudemd), `FUNCTIONAL.md`, and `ARCHITECTURE.md` files during conception, creating common standards before splitting into parallel development.
+Working with multiple AI instances exposed the critical importance of shared specifications, the content of some of these specs are discussed in more detail in my previous [AI in the loop](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) post. Teams established comprehensive [`CLAUDE.md`](/posts/maximising-claude-code-building-an-effective-claudemd), `FUNCTIONAL.md`, and `ARCHITECTURE.md` files during conception, creating common standards before splitting into parallel development.
 
 **Standardised prompting becomes crucial when everyone has an AI assistant.** Small variations in how developers prompt their Claude instances can lead to dramatically different code styles, architectural assumptions, and implementation approaches. Teams that consistently referenced shared specifications—always directing Claude to review standards before coding—maintained architectural coherence across multiple development streams.
 
@@ -90,8 +90,6 @@ This wasn't a static dependency chart. The team continuously updated ticket stat
 One practical lesson emerged around AI delegation boundaries, revealing an uncomfortable irony. Teams that attempted full environment setup through Claude—scaffolding, dependencies, framework initialisation—encountered predictable delays as AI tools consistently suggested outdated patterns (deprecated Next.js routing conventions, obsolete package versions). This creates a frustrating paradox: the very boilerplate work that AI should eliminate becomes more time-consuming when AI gets it wrong, forcing developers to spend more time on mundane setup tasks rather than less.
 
 Our guidance that **framework initialisation, scaffolding and package installation should be handled manually** before engaging AI for development work proved critical. Teams following this approach progressed smoothly through feature development whilst those attempting full AI delegation found themselves rebuilding foundations as teammates moved ahead.
-
-As one participant reflected: **"A review of the created tickets would have been helpful, along with some tips for successful project setup."** This highlighted the principle: **when you start with bad foundations, every subsequent task requires rework**.
 
 ## Why Live Documentation Trumps Individual Context
 
