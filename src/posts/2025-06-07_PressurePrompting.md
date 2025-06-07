@@ -159,7 +159,7 @@ In all seriousness, beyond obvious ethical considerations, continuing aggressive
 
 Sergey Brin's observation might have merit in specific contexts. My short experiment suggested that threats possibly make AI responses more focused and direct, though not necessarily higher quality. The effect seems more about cutting through verbose tendencies than unlocking hidden capabilities.
 
-In fact, this has less to do with threats, and more to do with clarity - clear, specific instructions that demand concrete results. You might achieve similar outcomes by simply asking for "concise, action-oriented responses" without resorting to pressure prompting.
+In fact, this has less to do with threats, and more to do with clarity - clear, specific instructions that demand concrete results. While pressure prompting will certainly entertain you, and Claude may even tickle you with its responses, you might achieve similar outcomes by simply asking for "concise, action-oriented responses" without resorting to pressure prompting.
 
 Therefore, I did make a final update to my preferences as a result, this time without the threats but more specific instructions:
 
