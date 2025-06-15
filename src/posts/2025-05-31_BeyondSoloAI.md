@@ -9,7 +9,7 @@ Following our successful [HULA framework workshops](/posts/ai-in-the-loop-reflec
 
 The results exceeded expectations: **90% of participants found the content relevant**, **65% felt very well supported**, and **every team completed functional Kanban applications with persistent storage**. More importantly, the structured team coordination revealed a powerful innovation that points toward scalable solutions for larger development teams.
 
-## From Individual AI to Team Coordination
+## From individual AI to team coordination
 
 Participants formed pairs (with one group of 3) and the day followed a deliberate progression designed to surface coordination challenges:
 
@@ -23,7 +23,7 @@ Participants formed pairs (with one group of 3) and the day followed a deliberat
 
 The task remained straightforward, build a collaborative Kanban board application, but the process explored how teams coordinate when everyone has an AI pair programming partner.
 
-## The IQRE Methodology in Team Context
+## The IQRE methodology in team context
 
 Our established IQRE methodology (**Iterate**, **Question**, **Review/Create**, **Explain**) proved valuable for maintaining discipline in AI interactions whilst enabling team coordination. The "Explain" phase became particularly critical through structured pull request templates:
 
@@ -49,7 +49,7 @@ As one participant noted:
 
 > "I think that it's fundamental to learn how to use AI as a peer for peer programming, and, even more important, to do it in a repeatable and consistent way so that collaboration in teams is possible. This workshop gives you a workflow that you can use yourself to always be in control of your code, and share with your team."
 
-## Shared Specifications: The Foundation of Team AI Coordination
+## Shared specifications: the foundation of team AI coordination
 
 Working with multiple AI instances exposed the critical importance of shared specifications, the content of some of these specs are discussed in more detail in my previous [AI in the loop](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) post. Teams established comprehensive [`CLAUDE.md`](/posts/maximising-claude-code-building-an-effective-claudemd), `FUNCTIONAL.md`, and `ARCHITECTURE.md` files during conception, creating common standards before splitting into parallel development.
 
@@ -59,13 +59,13 @@ One participant emphasised:
 
 > "Excellent experience of collaborative development with AI supporting. I found the documentation and audit trails of work to be really helpful."
 
-## Context Windows and the Documentation Challenge
+## Context windows and the documentation challenge
 
 The workshop highlighted Claude's context window limitations. This is a challenge affecting both individual and team AI usage. Our initial approach involved `HISTORY.md` files, summaries each developer maintained to preserve context across sessions when Claude conversations exceeded limits or needed to be reset.
 
 However, participants questioned this approach. If the context window is precious, why include potentially irrelevant previous interactions? Some teams found shared dependency documents more valuable than individual history files, especially when these are treated as live documents, leading to an unexpected innovation.
 
-## The Core Discovery: Live Documentation as Team Coordination
+## The core discovery: live documentation as team coordination
 
 Rather than maintaining individual `HISTORY.md` files as we'd suggested, one three-developer team created a living `TICKETS.md` document that evolved throughout development:
 
@@ -85,13 +85,13 @@ This wasn't a static dependency chart. The team continuously updated ticket stat
 
 **This innovation solved a critical coordination problem**: how do you orchestrate multiple AI assistants working on interdependent features? The visual dependency tracking became a shared brain for the team, emerging from the pressure of coordinating three developers rather than the typical pair that the workshop was planned for.
 
-## Environment Setup: The Reality Check
+## Environment setup: the reality check
 
 One practical lesson emerged around AI delegation boundaries, revealing an uncomfortable irony. Teams that attempted full environment setup through Claude—scaffolding, dependencies, framework initialisation—encountered predictable delays as AI tools consistently suggested outdated patterns (deprecated Next.js routing conventions, obsolete package versions). This creates a frustrating paradox: the very boilerplate work that AI should eliminate becomes more time-consuming when AI gets it wrong, forcing developers to spend more time on mundane setup tasks rather than less.
 
 Our guidance that **framework initialisation, scaffolding and package installation should be handled manually** before engaging AI for development work proved critical. Teams following this approach progressed smoothly through feature development whilst those attempting full AI delegation found themselves rebuilding foundations as teammates moved ahead.
 
-## Why Live Documentation Trumps Individual Context
+## Why live documentation tumps individual context
 
 The `TICKETS.md` approach revealed why shared living documentation becomes more valuable than individual context preservation when coordinating multiple AI instances:
 
@@ -102,7 +102,7 @@ The `TICKETS.md` approach revealed why shared living documentation becomes more 
 
 Individual history files, by contrast, may consume precious context window space unnecessarily. The live documentation approach optimised for team coordination rather than individual AI sessions.
 
-## Team Coordination at Scale
+## Team coordination at scale
 
 Several participants requested deeper workplace integration, noting: **"AI being used effectively in real-life workplaces"** as their primary interest. The `TICKETS.md` innovation points toward broader applications in professional development environments, all enabled through [Model Context Protocol (MCP)](https://www.anthropic.com/news/model-context-protocol) connections:
 
@@ -111,7 +111,7 @@ Several participants requested deeper workplace integration, noting: **"AI being
 - **Slack integration** for real-time team notifications
 - **CI/CD pipeline triggers** based on ticket completion
 
-## Multi-Agent Coordination: The Next Evolution
+## Multi-agent coordination: the next evolution
 
 The coordination challenges we observed point toward emerging solutions in AI orchestration. Our upcoming workshop series explores two complementary approaches:
 
@@ -138,7 +138,7 @@ def supervisor(state: State) -> State:
     return {"action": "synthesis"}
 ```
 
-## Framework Evolution for Professional Practice
+## Framework evolution for professional practice
 
 The workshop demonstrated that effective AI team coordination requires fundamentally different approaches than individual AI assistance. Success patterns included:
 
@@ -152,7 +152,7 @@ The feedback was overwhelmingly positive:
 
 > "Continually surprised by just how powerful and effective using AI to code can be from each workshop. Can't wait for the next one."
 
-## Looking Forward: Orchestrated Development
+## Looking forward: orchestrated development
 
 The `TICKETS.md` innovation reveals how effective team AI coordination can emerge organically from well-structured constraints. Rather than complex orchestration frameworks, simple shared documentation patterns enabled effective parallel development.
 
