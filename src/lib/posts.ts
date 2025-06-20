@@ -2,88 +2,78 @@ import fs, { existsSync } from "fs";
 import path, { join } from "path";
 import matter from "gray-matter";
 
-const postsDirectory = path.join(process.cwd(), "src", "posts");
+const postsDirectory = path.join(process.cwd(), "public", "posts");
 
 export interface Post {
-  /**
-   * URL friendly slug generated from the post title. Used as the route
-   * segment under `/posts/[slug]`.
-   */
   slug: string;
-  /** Human readable title extracted from front‑matter or derived from file name */
   title: string;
-  /** ISO date string extracted from front‑matter or derived from file name */
   date: string;
-  /** Full markdown content (without the front‑matter) */
   content: string;
-  /** Short preview/excerpt that is rendered on the index page */
   preview: string;
-  /** Path to the post image */
   imagePath?: string;
-  /** GitHub link */
   github?: string;
-  /** Tags for filtering posts */
   tags?: string[];
 }
 
 function slugify(text: string): string {
-  return (
-    text
-      .toLowerCase()
-      .trim()
-      // Replace spaces with hyphens
-      .replace(/\s+/g, "-")
-      // Remove all characters that are not alphanumeric, hyphen or underscore
-      .replace(/[^a-z0-9-_]/g, "")
-      // Collapse multiple hyphens
-      .replace(/-+/g, "-")
-  );
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-_]/g, "")
+    .replace(/-+/g, "-");
 }
 
 export function getAllPosts(): Post[] {
+  if (!existsSync(postsDirectory)) {
+    return [];
+  }
+
   const fileNames = fs.readdirSync(postsDirectory);
-  const posts = fileNames.map((fileName) => {
-    const imagePath = "/" + fileName.replace(".md", ".png");
-    const slug = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(fileContents);
-    const title = data.title || slug.split("_")[1].replace(/-/g, " ");
-    const date = data.date || slug.split("_")[0].replace(/-/g, "/");
+  const posts = fileNames
+    .filter((fileName) => fileName.endsWith(".md"))
+    .map((fileName) => {
+      const imagePath = "/" + fileName.replace(".md", ".png");
+      const slug = fileName.replace(/\.md$/, "");
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const { data, content } = matter(fileContents);
+      const title =
+        data.title || slug.split("_")[1]?.replace(/-/g, " ") || slug;
+      const date =
+        data.date ||
+        slug.split("_")[0]?.replace(/-/g, "/") ||
+        new Date().toISOString().split("T")[0];
 
-    // Generate a short preview (first non‑heading paragraph or max 200 chars)
-    const preview = (() => {
-      // Remove heading lines (starting with #)
-      const lines = content.split("\n");
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed) continue; // skip empty lines
-        if (trimmed.startsWith("#")) continue; // skip headings
-        // Return first 200 characters (avoid cutting words in half where possible)
-        if (trimmed.length <= 200) return trimmed;
-        const sliced = trimmed.slice(0, 200);
-        return sliced.slice(0, sliced.lastIndexOf(" ")) + "…";
-      }
-      return "";
-    })();
+      const preview = (() => {
+        const lines = content.split("\n");
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          if (trimmed.startsWith("#")) continue;
+          if (trimmed.length <= 200) return trimmed;
+          const sliced = trimmed.slice(0, 200);
+          return sliced.slice(0, sliced.lastIndexOf(" ")) + "…";
+        }
+        return "";
+      })();
 
-    const slugified = slugify(title);
+      const slugified = slugify(title);
+      const publicImagePath = join(process.cwd(), "public", imagePath);
+      const imageExists = imagePath && existsSync(publicImagePath);
 
-    // During build time, check if the image exists in the public folder
-    const publicImagePath = join(process.cwd(), "public", imagePath);
-    const imageExists = imagePath && existsSync(publicImagePath);
+      return {
+        slug: slugified,
+        title,
+        date,
+        content,
+        preview,
+        ...(imageExists ? { imagePath } : {}),
+        github: data.github,
+        tags: data.tags,
+      };
+    });
 
-    return {
-      slug: slugified,
-      title,
-      date,
-      content,
-      preview,
-      ...(imageExists ? { imagePath } : {}),
-      github: data.github,
-      tags: data.tags,
-    };
-  });
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
