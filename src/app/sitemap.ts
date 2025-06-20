@@ -20,14 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.push({
       url: `${baseUrl}/posts/${post.slug}`,
       lastModified: postDate,
-      changeFrequency: "monthly",
+      changeFrequency: "yearly",
       priority: 0.8,
     });
 
     routes.push({
       url: `${baseUrl}/posts/${post.slug}.md`,
       lastModified: postDate,
-      changeFrequency: "monthly",
+      changeFrequency: "yearly",
       priority: 0.6,
     });
   });
