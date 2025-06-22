@@ -7,14 +7,69 @@ tags: ["accessibility", "best practices", "web", "ux", "ai"]
 
 Four months ago, I completed the [_WAI0.1x: Introduction to Web Accessibility_ certification](https://www.edx.org/learn/web-accessibility/the-world-wide-web-consortium-w3c-introduction-to-web-accessibility). What started as professional development quickly became a fundamental shift in how I approach web development. Recently, whilst building a bilingual band website for a client at [Tandem Creative Dev](https://runintandem.com/), I discovered the gap between accessibility theory and modern framework implementation, and why that gap matters more than I initially realised.
 
-## TL;DR: Key accessibility lessons for modern frameworks
+Hold tight, this is a long one, so I've included a **tl;dr** below if you're just here for accessibility guidance in Next.js and Tailwind.
 
-- **Dynamic language switching requires programmatic `lang` attribute updates** for proper screen reader pronunciation
-- **`prefers-reduced-motion` isn't about slower animations**, it's about completely different experiences that often perform better for everyone
-- **Browser-first form validation often provides better UX** than aggressive custom error messages whilst maintaining accessibility
-- **Live regions (`aria-live`) are essential** for dynamic content like carousels, filtered lists, and real-time updates
-- **Semantic HTML architecture scales accessibility improvements** across entire applications through proper component design
-- **AI can accelerate accessibility audits and fixes** through structured guidance and automated code generation
+## TL;DR: Accessibility in Next.js + Tailwind
+
+**Dynamic language switching:**
+
+```tsx
+useEffect(() => {
+  document.documentElement.lang = isFrench ? "fr" : "en";
+}, [isFrench, isLoading]);
+```
+
+**Essential Tailwind accessibility classes:**
+
+- `sr-only` - Screen reader only content
+- `focus-visible:ring-2` - Keyboard focus indicators
+- `motion-reduce:hidden/block` - Respect motion preferences
+- `focus:outline-none focus:ring-2` - Custom focus styling
+
+**Form validation (browser-first approach):**
+
+```tsx
+if (formRef.current && !formRef.current.checkValidity()) {
+  formRef.current.reportValidity();
+  return;
+}
+```
+
+**Live regions for dynamic content:**
+
+```tsx
+<div aria-live="polite" className="sr-only">
+  Image {currentIndex + 1} of {images.length}
+</div>
+```
+
+**Focus management with focus-trap-react:**
+
+```tsx
+<FocusTrap
+  active={isMenuOpen}
+  focusTrapOptions={{
+    returnFocusOnDeactivate: true,
+    setReturnFocus: menuButtonRef.current,
+  }}
+>
+```
+
+**Component patterns:**
+
+- Use proper semantic HTML (`nav`, `main`, `section`)
+- Add `aria-label` for context
+- Include `aria-describedby` for help text
+- Group related form elements with `role="group"`
+
+**Motion preferences:**
+
+```tsx
+<video className="motion-reduce:hidden" />
+<Image className="motion-reduce:block hidden" />
+```
+
+**Key insight:** Build accessible patterns into reusable components once, then scale across your application. Browser validation + accessibility enhancements often beats aggressive custom validation for simple forms.
 
 ## From vanilla HTML to modern frameworks
 
