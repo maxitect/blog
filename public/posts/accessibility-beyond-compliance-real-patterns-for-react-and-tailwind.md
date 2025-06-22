@@ -308,9 +308,18 @@ The process was surprisingly effective. After Claude audited the codebase and we
 
 I was able to replicate this process across several of our other projects with remarkable speed. What emerged was a systematic workflow that turned accessibility auditing from a manual slog into something approaching automation:
 
-```
-Claude audits repo → Scope required changes → Generate detailed prompts →
-Feed to Codex agent → Review diffs & iterate → Create PR → Merge code
+```mermaid
+flowchart TB
+    A[Claude audits repo] -->|Audit report| B[Scope required changes]
+    B -->|Change specification| C[Generate detailed prompts]
+
+    C -->|Detailed prompts| D[Feed to Codex agent]
+    D -->|Code diffs| E[Review diffs & iterate]
+
+    E -->|Approved changes| F[Create PR]
+    F -->|Pull request| G[Merge code]
+
+    E -.->|Revision feedback| C
 ```
 
 **The workflow in practice:**
