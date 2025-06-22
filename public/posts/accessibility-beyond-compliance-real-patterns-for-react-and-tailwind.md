@@ -316,7 +316,8 @@ flowchart TB
     C -->|Detailed prompts| D[Codex agent containerised environment]
     D -->|Review| E[Code diffs]
 
-    E -->|Approve changes| F[Create Pull Request]
+    D -->|Create| F[Pull Request]
+    E -->|Approve changes| F
     F -->|Merge| G[Main codebase]
 
     E -.->|Iterate| C
