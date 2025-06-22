@@ -45,18 +45,19 @@ export function getAllPosts(): Post[] {
         slug.split("_")[0]?.replace(/-/g, "/") ||
         new Date().toISOString().split("T")[0];
 
-      const preview = (() => {
-        const lines = content.split("\n");
-        for (const line of lines) {
-          const trimmed = line.trim();
-          if (!trimmed) continue;
-          if (trimmed.startsWith("#")) continue;
-          if (trimmed.length <= 200) return trimmed;
-          const sliced = trimmed.slice(0, 200);
-          return sliced.slice(0, sliced.lastIndexOf(" ")) + "…";
-        }
-        return "";
-      })();
+        const preview = (() => {
+          const text = content
+            .replace(/^#+.*$/gm, '')
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+            .replace(/\*\*([^*]+)\*\*/g, '$1')
+            .replace(/\*([^*]+)\*/g, '$1')
+            .replace(/_([^_]+)_/g, '$1')
+            .trim()
+            .slice(0, 200);
+          
+          const lastSpace = text.lastIndexOf(' ');
+          return lastSpace > 0 ? text.slice(0, lastSpace) + '…' : text;
+         })();
 
       const slugified = slugify(title);
       const publicImagePath = join(process.cwd(), "public", imagePath);
