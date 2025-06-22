@@ -7,7 +7,9 @@ tags: ["accessibility", "best practices", "web", "ux", "ai"]
 
 Four months ago, I completed the [_WAI0.1x: Introduction to Web Accessibility_ certification](https://www.edx.org/learn/web-accessibility/the-world-wide-web-consortium-w3c-introduction-to-web-accessibility). What started as professional development quickly became a fundamental shift in how I approach web development. Recently, whilst building a bilingual band website for a client at [Tandem Creative Dev](https://runintandem.com/), I discovered the gap between accessibility theory and modern framework implementation, and why that gap matters more than I initially realised.
 
-Hold tight, this is a long one, so I've included a **tl;dr** below if you're just here for accessibility guidance in Next.js and Tailwind.
+Hold tight, this is a long one, so I've included a **tl;dr** below if you're just here for accessibility insights in Next.js and Tailwind.
+
+---
 
 ## TL;DR: Accessibility in Next.js + Tailwind
 
@@ -21,10 +23,10 @@ useEffect(() => {
 
 **Essential Tailwind accessibility classes:**
 
-- `sr-only` - Screen reader only content
-- `focus-visible:ring-2` - Keyboard focus indicators
-- `motion-reduce:hidden/block` - Respect motion preferences
-- `focus:outline-none focus:ring-2` - Custom focus styling
+- `sr-only`: Screen reader only content
+- `focus-visible:ring-2`: Keyboard focus indicators
+- `motion-reduce:hidden/block`: Respect motion preferences
+- `focus:outline-none focus:ring-2`: Custom focus styling
 
 **Form validation (browser-first approach):**
 
@@ -57,7 +59,7 @@ if (formRef.current && !formRef.current.checkValidity()) {
 
 **Component patterns:**
 
-- Use proper semantic HTML (`nav`, `main`, `section`)
+- Use proper semantic HTML (`nav`, `main`, `section`, `article`, `ul`)
 - Add `aria-label` for context
 - Include `aria-describedby` for help text
 - Group related form elements with `role="group"`
@@ -70,6 +72,8 @@ if (formRef.current && !formRef.current.checkValidity()) {
 ```
 
 **Key insight:** Build accessible patterns into reusable components once, then scale across your application. Browser validation + accessibility enhancements often beats aggressive custom validation for simple forms.
+
+---
 
 ## From vanilla HTML to modern frameworks
 
