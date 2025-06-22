@@ -1,5 +1,5 @@
 ---
-title: "Accessibility beyond compliance: Real patterns for React and Tailwind"
+title: "Accessibility Beyond Compliance: Real Patterns for React and Tailwind"
 date: "2025-06-22"
 github: "https://github.com/TandemCreativeDev/cbc"
 tags: ["accessibility", "best practices", "web", "ux", "ai"]
