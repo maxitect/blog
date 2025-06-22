@@ -1,36 +1,47 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import mermaid from "mermaid";
 
 interface MermaidProps {
   chart: string;
+  theme?: "default" | "neutral" | "dark" | "forest" | "base";
 }
 
-let mermaidInitialized = false;
-
-export default function MermaidDiagram({ chart }: MermaidProps) {
+export default function MermaidDiagram({ chart, theme }: MermaidProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    if (!mermaidInitialized) {
-      mermaid.initialize({
-        startOnLoad: false,
-        theme: "default",
-        securityLevel: "loose",
-      });
-      mermaidInitialized = true;
-    }
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsDarkMode(event.matches);
+    };
+    setIsDarkMode(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
 
-    if (ref.current) {
-      const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
-      mermaid.render(id, chart).then(({ svg }) => {
-        if (ref.current) {
-          ref.current.innerHTML = svg;
-        }
-      });
-    }
-  }, [chart]);
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const selectedTheme = theme || (isDarkMode ? "dark" : "neutral");
+    const id = `mermaid-${Math.random().toString(36).substring(2, 11)}`;
+
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: selectedTheme,
+      securityLevel: "loose",
+    });
+
+    mermaid.render(id, chart).then(({ svg }) => {
+      if (ref.current) {
+        ref.current.innerHTML = svg;
+      }
+    });
+  }, [chart, isDarkMode, theme]);
 
   return <div ref={ref} />;
 }
