@@ -313,13 +313,13 @@ flowchart TB
     A[Claude audits repo] -->|Audit report| B[Scope required changes]
     B -->|Change specification| C[Generate detailed prompts]
 
-    C -->|Detailed prompts| D[Feed to Codex agent]
-    D -->|Code diffs| E[Review diffs & iterate]
+    C -->|Detailed prompts| D[Codex agent containerised environment]
+    D -->|Review| E[Code diffs]
 
-    E -->|Approved changes| F[Create PR]
-    F -->|Pull request| G[Merge code]
+    E -->|Approve changes| F[Create Pull Request]
+    F -->|Merge| G[Main codebase]
 
-    E -.->|Revision feedback| C
+    E -.->|Iterate| C
 ```
 
 **The workflow in practice:**
