@@ -5,9 +5,11 @@ github: "https://github.com/TandemCreativeDev/fac-ws_ai_multi-agent"
 tags: ["ai", "software", "workshops"]
 ---
 
-**TL;DR: Teaching Multi-Agent AI Patterns at Founders & Coders**
+We've now delivered our multi-agent AI workshop twice at [Founders & Coders](https://www.foundersandcoders.com/), where developers learn how to build AI systems using [LangGraph](https://langchain-ai.github.io/langgraph/). The sessions led to discussions about AI orchestration, practical applications, and the future of automated workflows. Here's what emerged from facilitating this workshop where developers learn to think beyond single-agent systems.
 
-**Six coordination patterns for AI systems:**
+## TL;DR
+
+### **Six coordination patterns for AI systems:**
 
 - Sequential workflow (linear pipelines)
 - Conditional routing (content-based agent selection)
@@ -16,20 +18,18 @@ tags: ["ai", "software", "workshops"]
 - Orchestrator-worker (dynamic task breakdown)
 - Supervisor agents (intelligent coordination)
 
-**Key insights from two workshop sessions:**
+### **Key insights from two workshop sessions:**
 
 - Model routing by complexity saves costs and improves output quality
 - Architecture-first beats syntax-focused approaches
-- Anthropic's Project Vend shows why human-in-the-loop matters (AI claimed it would deliver vending machine products wearing a blue blazer)
+- Anthropic's Project Vend shows why human-in-the-loop matters
 - Real applications need pattern combinations, not single approaches
 
-**Practical takeaway**: Master patterns first, add human oversight for critical decisions, then scale through tool integration. 85% of participants found immediate applications for their work.
+### **Practical takeaway**:
 
-**Workshop materials**: [GitHub repository with all patterns and exercises](https://github.com/TandemCreativeDev/fac-ws_ai_multi-agent)
+Master patterns first, add human oversight for critical decisions, then scale through tool integration. 85% of participants found immediate applications for their work.
 
 ---
-
-We've now delivered our multi-agent AI workshop twice at [Founders & Coders](https://www.foundersandcoders.com/), where developers learn how to build AI systems using [LangGraph](https://langchain-ai.github.io/langgraph/). The sessions led to discussions about AI orchestration, practical applications, and the future of automated workflows. Here's what emerged from facilitating this workshop where developers learn to think beyond single-agent systems.
 
 ## Six patterns for multi-agent coordination
 
