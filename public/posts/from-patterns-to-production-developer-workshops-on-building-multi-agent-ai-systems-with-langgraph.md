@@ -230,7 +230,7 @@ These workshops confirm that multi-agent AI education benefits from architectura
 Imagine the supervisor-agent pattern coordinating specialists that can:
 
 - Access company databases through MCP connections
-- File actual tax returns through government APIs
+- File actual company and tax documents through government APIs
 - Process real invoices and update accounting systems
 - Generate and deploy code to production environments
 - Monitor system health and respond to alerts
