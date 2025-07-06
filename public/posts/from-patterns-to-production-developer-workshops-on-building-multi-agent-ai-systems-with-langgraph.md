@@ -239,4 +239,4 @@ The coordination patterns we outlined provide the foundation, but the integratio
 
 Project Vend showed us the failure modes. Human-in-the-loop controls show us the safety mechanisms. Multi-agent coordination patterns show us the architectural foundations. Combined with proper tooling and external integrations, they point toward AI systems that genuinely augment human capabilities at scale.
 
-For developers considering multi-agent systems, the lesson is clear: master the patterns first, add human oversight strategically, then scale through intelligent tool integration. The coordination challenges are universal, but the solutions depend entirely on understanding which pattern fits your particular problem—and ensuring humans remain in control of the critical decisions.
+For developers considering multi-agent systems, the lesson is clear: master the patterns first, add human oversight strategically, then scale through intelligent tool integration. The coordination challenges are universal, but the solutions depend entirely on understanding which pattern fits your particular problem, and ensuring humans remain in control of the critical decisions.
