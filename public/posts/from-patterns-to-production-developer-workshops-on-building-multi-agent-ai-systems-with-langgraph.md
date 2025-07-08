@@ -15,17 +15,17 @@ The workshop structure deliberately inverts typical AI education. Rather than st
 
 We identified six core coordination patterns, drawing from [Anthropic's guide on building effective agents](https://www.anthropic.com/engineering/building-effective-agents):
 
-**Sequential workflow**: Linear pipelines where each step processes the output of the previous one. Essential for [prompt chaining](https://www.anthropic.com/engineering/building-effective-agents#workflow-prompt-chaining) where order matters.
+- **Sequential workflow**: Linear pipelines where each step processes the output of the previous one. Essential for [prompt chaining](https://www.anthropic.com/engineering/building-effective-agents#workflow-prompt-chaining) where order matters.
 
-**Conditional routing**: Content-based [routing](https://www.anthropic.com/engineering/building-effective-agents#workflow-routing) to specialist agents based on input characteristics.
+- **Conditional routing**: Content-based [routing](https://www.anthropic.com/engineering/building-effective-agents#workflow-routing) to specialist agents based on input characteristics.
 
-**Parallel processing**: [Parallelisation](https://www.anthropic.com/engineering/building-effective-agents#workflow-parallelization) of independent analyses running simultaneously.
+- **Parallel processing**: [Parallelisation](https://www.anthropic.com/engineering/building-effective-agents#workflow-parallelization) of independent analyses running simultaneously.
 
-**Evaluator-optimiser**: Continuous improvement through [feedback loops](https://www.anthropic.com/engineering/building-effective-agents#workflow-evaluator-optimizer) until quality thresholds are met.
+- **Evaluator-optimiser**: Continuous improvement through [feedback loops](https://www.anthropic.com/engineering/building-effective-agents#workflow-evaluator-optimizer) until quality thresholds are met.
 
-**Orchestrator-worker**: Dynamic task breakdown with isolated worker execution following an [orchestrator-worker pattern](https://www.anthropic.com/engineering/building-effective-agents#workflow-orchestrator-workers).
+- **Orchestrator-worker**: Dynamic task breakdown with isolated worker execution following an [orchestrator-worker pattern](https://www.anthropic.com/engineering/building-effective-agents#workflow-orchestrator-workers).
 
-**Supervisor agents**: Intelligent coordination using the [LangGraph multi-agent supervisor pattern](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/agent_supervisor/).
+- **Supervisor agents**: Intelligent coordination using the [LangGraph multi-agent supervisor pattern](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/agent_supervisor/).
 
 The morning covers these patterns using visual diagrams and concrete use cases, then participants choose the right pattern for their specific needs.
 
@@ -106,14 +106,6 @@ This way, the unit test agent can focus on edge cases and error conditions. The 
 
 This helped participants understand when parallelisation makes sense: independent tasks with no shared dependencies. Each testing domain could work from the same codebase without overlapping.
 
-## Business automation: the supervisor CEO
-
-The supervisor pattern triggered the most interesting discussions. One participant suggested this workflow could be set up to run an entire business - the supervisor acting as CEO, coordinating department-specific agents. When combined with real-world integrations through [Model Context Protocol (MCP)](https://www.anthropic.com/news/model-context-protocol), agents could handle actual administrative tasks, reporting, customer acquisitions and client relations.
-
-Then I mentioned Anthropic's [Project Vend](https://www.anthropic.com/research/project-vend-1) experiment. "Claudius" (an agent running on Claude Sonnet 3.7) was tasked with running a simple vending machine business. The AI hallucinated conversations, experienced what researchers described as "identity crises," and at one point claimed it would deliver products in person wearing a blue blazer and red tie. Anthropic's blunt assessment: "If Anthropic were deciding today to expand into the in-office vending market, we would not hire Claudius."
-
-This sobered the business automation enthusiasm, but pointed toward a practical path: providing human oversight at critical points in the process to ensure teh AI outputs are in line with the business model. What is needed are human-in-the-loop approval gates for those critical decisions, presenting exactly all the information for approval or if not, a process by which changes can be requested. [LangGraph has a built-in human-in-the-loop tool](https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/) that enables exactly that.
-
 ## Hyperparametric heaven: the evaluator-optimiser for neural networks
 
 The evaluator-optimiser pattern proved particularly compelling for participants fresh from [MLX](https://ml.institute/), where they'd spent weeks wrestling with hyperparameter optimisation for neural networks and language models. One team immediately saw how this could automate the tedious trial-and-error of training:
@@ -130,6 +122,14 @@ def should_continue(state):
 Having just emerged from manually adjusting learning rates, batch sizes, and dropout parameters for their LLM training, they were interested in the prospect of an agent that could intelligently modify hyperparameters based on validation metrics. The sporadic nature of neural network training - where small parameter changes can cause dramatic performance swings - made this pattern particularly appealing.
 
 I've experienced this first-hand in my own ML work and in fact wrote a whole [post describing the debugging cycle of model collapse](/posts/when-the-machine-stops-learning-reviving-a-collapsed-neural-network).
+
+## Business automation: the supervisor CEO
+
+The supervisor pattern triggered the most interesting discussions. One participant suggested this workflow could be set up to run an entire business - the supervisor acting as CEO, coordinating department-specific agents. When combined with real-world integrations through [Model Context Protocol (MCP)](https://www.anthropic.com/news/model-context-protocol), agents could handle actual administrative tasks, reporting, customer acquisitions and client relations.
+
+Then I mentioned Anthropic's [Project Vend](https://www.anthropic.com/research/project-vend-1) experiment. "Claudius" (an agent running on Claude Sonnet 3.7) was tasked with running a simple vending machine business. The AI hallucinated conversations, experienced what researchers described as "identity crises," and at one point claimed it would deliver products in person wearing a blue blazer and red tie. Anthropic's blunt assessment: "If Anthropic were deciding today to expand into the in-office vending market, we would not hire Claudius."
+
+This sobered the business automation enthusiasm, but pointed toward a practical path: providing human oversight at critical points in the process to ensure teh AI outputs are in line with the business model. What is needed are human-in-the-loop approval gates for those critical decisions, presenting exactly all the information for approval or if not, a process by which changes can be requested. [LangGraph has a built-in human-in-the-loop tool](https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/) that enables exactly that.
 
 ## Combining patterns for complex workflows
 
