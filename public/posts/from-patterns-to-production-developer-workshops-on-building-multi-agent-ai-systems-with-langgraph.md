@@ -5,7 +5,9 @@ github: "https://github.com/TandemCreativeDev/fac-ws_ai_multi-agent"
 tags: ["ai", "software", "workshops", "machine learning"]
 ---
 
-We've now delivered our multi-agent AI workshop twice at [Founders & Coders](https://www.foundersandcoders.com/), where developers learn to build AI systems using [LangGraph](https://langchain-ai.github.io/langgraph/). This is our third AI workshop in a series, the first was about [solo AI-assisted development](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) and the second about [working in pairs with AI](/posts/beyond-solo-ai-how-pair-programming-with-claude-code-transforms-team-development). What started as a straightforward technical workshop revealed something more interesting: how developers naturally think about AI coordination when given the right architectural frameworks.
+We've now delivered our multi-agent AI workshop twice at [Founders & Coders](https://www.foundersandcoders.com/), where developers learn to build AI systems using [LangGraph](https://langchain-ai.github.io/langgraph/). This is our third AI workshop in a series, the first was about [solo AI-assisted development](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) and the second about [working in pairs with AI](/posts/beyond-solo-ai-how-pair-programming-with-claude-code-transforms-team-development).
+
+What started as a straightforward technical workshop revealed something more interesting: how developers naturally think about AI coordination when given the right architectural frameworks...
 
 ## Teaching patterns, not syntax
 
