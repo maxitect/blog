@@ -113,32 +113,55 @@ The platform generated impressively detailed specifications, which I did opt to 
 
 The requirements document outlined specific WCAG criteria, semantic HTML structures, and screen reader compatibility needs. The technical design proposed comprehensive accessibility utilities, focus management systems, and ARIA attribute generation. The task breakdown included validation functions, testing procedures, and touch target compliance.
 
-But KIRO generated yet another maintainability nightmare. Here's the animation system it created for the About section:
+But KIRO generated a different kind of maintainability nightmare. Here's the accessibility validation system it created:
 
 ```typescript
-// KIRO generated this complex animation system in About.tsx
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.6, staggerChildren: 0.2 },
-  },
-  visibleNoMotion: {
-    opacity: 1,
-    transition: { duration: 0 },
-  },
-};
+/**
+ * WCAG 2.2 AA Compliance Validation Functions
+ * Provides comprehensive validation against accessibility standards
+ */
+export class WCAGValidator {
+  private validateNonTextContent(): void {
+    const imgMatches = this.componentCode.match(/<img[^>]*>/g);
+    if (imgMatches) {
+      imgMatches.forEach((img) => {
+        if (!img.includes("alt=")) {
+          this.addResult("error", "1.1.1", "Images must have alternative text");
+        }
+      });
+    }
+  }
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
-  // ... 20+ more animation variants defined inline
-};
+  private validateInfoAndRelationships(): void {
+    if (inputMatches && labelMatches) {
+      if (!this.componentCode.includes("htmlFor=")) {
+        this.addResult(
+          "error",
+          "1.3.1",
+          "Form labels must be programmatically associated"
+        );
+      }
+    }
+  }
+
+  private validateContrast(): void {
+    if (
+      this.componentCode.includes("text-gray-") ||
+      this.componentCode.includes("bg-gray-")
+    ) {
+      this.addResult(
+        "warning",
+        "1.4.3",
+        "Verify color combinations meet 4.5:1 contrast ratio"
+      );
+    }
+  }
+
+  // ... 40+ more validation methods, 500+ lines total
+}
 ```
+
+This 500-line accessibility validation system attempts checks WCAG compliance through regex matching on component code. Each check method is actually well crafted and useful, which is a merit to KIRO's strength in generating these and the audit file that I fed it. However, it is brittle, non-modular, full of wrong assumptions (which would need fixing!) and essentially impossible to maintain and way beyond the scope while replicating a lot of logic already available in browser extension testing tools.
 
 The tool had seduced me into over-speccing dangerously. Because it generates specs automatically, it's easy to keep refining and expanding them while losing sight of whether the additional complexity serves your actual goals. This is an issue with any spec-driven workflow actually, even ours. However, having that initial conversation first before any spec is produced gives you the opportunity to outline your scope, timeline, priorities and set those expectations early.
 
@@ -182,7 +205,7 @@ export default function FilterButton({
     <button
       className={clsx(
         "py-2 px-4 rounded-full transition-colors duration-200",
-        isSelected ? "bg-orange text-black" : "bg-gray-200 text-gray-800"
+        isSelected ? "bg-clarks-orange text-black" : "bg-gray-200 text-gray-800"
       )}
       onClick={onToggle}
       aria-pressed={isSelected}
