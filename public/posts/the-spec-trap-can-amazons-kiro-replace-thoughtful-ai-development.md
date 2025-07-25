@@ -32,7 +32,64 @@ Then I peeped at the code.
 
 ## The maintainability crisis
 
-Buried beneath KIRO's polished specifications was a familiar problem: the generated code was fundamentally unmaintainable. Components repeated identical logic across files. Complex components spanning hundreds of lines (and many of them repeating identical logic!). State management was scattered and inconsistent. There was no architectural coherence beyond what the specifications explicitly mandated.
+Buried beneath KIRO's polished specifications was a familiar problem: the generated code was fundamentally unmaintainable. Components repeated identical logic across files. Complex components spanning hundreds of lines mixing multiple concerns. State management was scattered and inconsistent. There was no architectural coherence beyond what the specifications explicitly mandated.
+
+Here's what KIRO generated for the Hero section:
+
+```typescript
+export default function Hero({
+  videoSrc,
+  title,
+  subtitle,
+  ctaText,
+  ctaHref,
+}: HeroProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoState, setVideoState] = useState<VideoPlayerState>({
+    isPlaying: false,
+    isMuted: true,
+    currentTime: 0,
+    duration: 0,
+  });
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // 50+ lines of useEffect hooks for video management
+  // 30+ lines of event handlers
+  // 40+ lines of JSX with embedded logic
+  // All in a single component
+}
+```
+
+This Hero component exemplifies the maintainability trap. Video state management, motion preference detection, keyboard handling, and UI rendering are all tangled together. When a client requests a simple design change, you're editing a component that handles five different concerns.
+
+Even worse, KIRO repeated navigation logic across multiple files:
+
+```typescript
+// Footer.tsx - 80 lines of navigation handling
+const navigationItems = [
+  { name: "Home", href: "#hero" },
+  { name: "About", href: "#about" },
+  // ... repeated in three different files
+];
+
+const handleNavClick = (href: string) => {
+  const targetId = href.substring(1);
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+
+// Header.tsx - Nearly identical logic, 90+ lines
+const handleNavClick = (href: string) => {
+  const targetId = href.substring(1);
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  setIsMobileMenuOpen(false); // Slight variation
+};
+```
 
 The specifications themselves were thorough and well-structured. The problem was simpler: KIRO generated them from my minimal prompt, making hundreds of assumptions without asking. The AI filled every gap with its own preferences, not mine.
 
@@ -56,6 +113,33 @@ The platform generated impressively detailed specifications, which I did opt to 
 
 The requirements document outlined specific WCAG criteria, semantic HTML structures, and screen reader compatibility needs. The technical design proposed comprehensive accessibility utilities, focus management systems, and ARIA attribute generation. The task breakdown included validation functions, testing procedures, and touch target compliance.
 
+But KIRO generated yet another maintainability nightmare. Here's the animation system it created for the About section:
+
+```typescript
+// KIRO generated this complex animation system in About.tsx
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6, staggerChildren: 0.2 },
+  },
+  visibleNoMotion: {
+    opacity: 1,
+    transition: { duration: 0 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+  // ... 20+ more animation variants defined inline
+};
+```
+
 The tool had seduced me into over-speccing dangerously. Because it generates specs automatically, it's easy to keep refining and expanding them while losing sight of whether the additional complexity serves your actual goals. This is an issue with any spec-driven workflow actually, even ours. However, having that initial conversation first before any spec is produced gives you the opportunity to outline your scope, timeline, priorities and set those expectations early.
 
 What started as a focused accessibility enhancement became an elaborate system with validation frameworks, comprehensive testing suites, and detailed documentation generation. The specifications were thorough, technically sound, and completely disproportionate to what I actually needed.
@@ -71,6 +155,46 @@ The tool's persistence of context through project files addresses a real pain po
 The HULA workflow's strength lies in its emphasis on human agency and deliberate decision-making throughout the development process. The [IQRE methodology](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) (**Iterate**, **Question**, **Review/Create**, **Explain**) ensures that AI suggestions are always filtered through human judgment and project-specific requirements.
 
 Most critically, having a `STANDARDS.md` or `CLAUDE.md` live document establishes coding conventions before any implementation begins. This prevents the maintainability issues I encountered with KIRO-generated code. When AI knows your preferred patterns, naming conventions, and architectural principles, it produces code that fits your project rather than generic implementations.
+
+Compare KIRO's monolithic approach to a more maintainable pattern I use in production projects:
+
+```typescript
+// Extracted navigation logic into a custom hook
+export const useNavAnimation = ({
+  pathname,
+  menuRoutes,
+  isFrench,
+  navRef,
+  navItemRefs,
+}) => {
+  // Focused logic for navigation animation
+  return { activeRouteIndex, isAnimating, getBallStyles, handleAnimationEnd };
+};
+
+// Clean, focused components
+export default function FilterButton({
+  filter,
+  isSelected,
+  onToggle,
+  ...props
+}) {
+  return (
+    <button
+      className={clsx(
+        "py-2 px-4 rounded-full transition-colors duration-200",
+        isSelected ? "bg-orange text-black" : "bg-gray-200 text-gray-800"
+      )}
+      onClick={onToggle}
+      aria-pressed={isSelected}
+      {...props}
+    >
+      {filter}
+    </button>
+  );
+}
+```
+
+The difference is architectural intention. KIRO generates comprehensive functionality within single components, whilst thoughtful development extracts concerns into focused, testable units. The FilterButton handles one job well. The Hero component tries to handle five jobs adequately.
 
 The workshop format we've developed also addresses the collaboration challenge that KIRO doesn't quite solve yet: [how do development teams coordinate when everyone has their own AI assistant?](/posts/beyond-solo-ai-how-pair-programming-with-claude-code-transforms-team-development) Our `TICKETS.md` live dependency mapping approach creates shared context that enables multiple developers to work with separate AI instances while maintaining architectural coherence. This is only the start to fully solve this coordination challenge, and there are plenty of other underlying issues to resolve before such a methodology can be used in real large scale production teams.
 
