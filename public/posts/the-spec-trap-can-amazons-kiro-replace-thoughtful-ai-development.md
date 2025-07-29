@@ -10,6 +10,28 @@ The parallels are striking. KIRO's three-phase approach maps almost directly ont
 
 I found myself wondering if this tool could replace thoughtful (and time-consuming) AI development. However, my concern is that it seems KIRO productises the outputs whilst gutting the process that makes them effective.
 
+## TL;DR
+
+**What KIRO is**: Amazon's new tool that generates comprehensive project specs (requirements, technical design, implementation plans) from a single prompt, validating the structured approach we've been developing in our HULA framework.
+
+**What it gets right**: 
+- Rapid prototyping capability (half-day website builds)
+- Impressive spec generation with proper technical documentation
+- Persistent context through version-controlled docs
+- Significant investment validating spec-driven AI development
+
+**Current limitations**:
+- Generated code can be unmaintainable (500-line components, repeated logic)
+- Limited collaborative refinement - prefers regenerating entire specs over discussion
+- Missing coding standards integration (no equivalent to STANDARDS.md or CLAUDE.md)
+- Easy to over-spec due to automatic generation capabilities
+
+**The opportunity**: KIRO represents genuine progress in AI-assisted development. When combined with proper standards and human oversight, it can accelerate the specification phase significantly whilst maintaining quality.
+
+**Best use cases**: Excellent for rapid prototyping, client demos, and consultancy work where speed matters. Shows real promise when you resist immediate acceptance of generated specs and apply thoughtful refinement.
+
+**Bottom line**: A powerful addition to the AI development toolkit that validates structured approaches. Not a replacement for human judgment, but a sophisticated interface to AI assistance that works best when combined with established coding standards and deliberate review processes.
+
 ## The promise of structured AI development
 
 KIRO's three-phase approach is without question well researched and impressive: requirements generation, technical design, and planning. The platform generates detailed user stories using [EARS notation](https://medium.com/paramtech/ears-the-easy-approach-to-requirements-syntax-b09597aae31d), creates technical architecture documentation, and breaks work into sequenced tasks with dependency mapping.
