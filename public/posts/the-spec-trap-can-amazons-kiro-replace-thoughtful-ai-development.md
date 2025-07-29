@@ -4,7 +4,7 @@ date: "2025-07-27"
 tags: ["ai", "software", "best practices"]
 ---
 
-[Amazon's new KIRO tool](https://kiro.dev/) landed with considerable fanfare this month, promising to transform AI-assisted development through "spec-driven workflows." Having spent considerable time experimenting with it, I've reached an uncomfortable conclusion: KIRO is essentially a productised version of our [HULA framework](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) developed at [Founders & Coders](https://www.foundersandcoders.com/), but one that systematically removes some important parts.
+[Amazon's new KIRO tool](https://kiro.dev/) landed with considerable fanfare this month, promising to transform AI-assisted development through "spec-driven workflows." I spent time experimenting with it and reached an interesting conclusion: KIRO is essentially a productised version of our [HULA framework](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) developed at [Founders & Coders](https://www.foundersandcoders.com/), but one that systematically removes some important parts.
 
 The parallels are striking. KIRO's three-phase approach maps almost directly onto our framework of the [AI-assisted development workshops](/posts/beyond-solo-ai-how-pair-programming-with-claude-code-transforms-team-development): their `requirements.md` mirrors our `FUNCTIONAL.md`, their `design.md` resembles our `ARCHITECTURE.md`, and their `tasks.md` functions like our `TICKETS.md`. Amazon has clearly identified the same fundamental problem we've been addressing in our workshops: moving beyond "vibe coding" toward structured AI collaboration through spec development.
 
