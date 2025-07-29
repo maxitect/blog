@@ -1,20 +1,20 @@
 ---
 title: "The Spec Trap: Can Amazon's KIRO Replace Thoughtful AI Development?"
-date: "2025-07-25"
+date: "2025-07-27"
 tags: ["ai", "software", "best practices"]
 ---
 
 [Amazon's new KIRO tool](https://kiro.dev/) landed with considerable fanfare this month, promising to transform AI-assisted development through "spec-driven workflows." Having spent considerable time experimenting with it, I've reached an uncomfortable conclusion: KIRO is essentially a productised version of our [HULA framework](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) developed at [Founders & Coders](https://www.foundersandcoders.com/), but one that systematically removes some important parts.
 
-The parallels are striking. KIRO's three-phase approach maps almost directly onto our framework of our [AI-assisted development workshops](/posts/beyond-solo-ai-how-pair-programming-with-claude-code-transforms-team-development): their `requirements.md` mirrors our `FUNCTIONAL.md`, their `design.md` resembles our `ARCHITECTURE.md`, and their `tasks.md` functions like our `TICKETS.md`. Amazon has clearly identified the same fundamental problem we've been addressing in our workshops: moving beyond "vibe coding" toward structured AI collaboration through spec development.
+The parallels are striking. KIRO's three-phase approach maps almost directly onto our framework of the [AI-assisted development workshops](/posts/beyond-solo-ai-how-pair-programming-with-claude-code-transforms-team-development): their `requirements.md` mirrors our `FUNCTIONAL.md`, their `design.md` resembles our `ARCHITECTURE.md`, and their `tasks.md` functions like our `TICKETS.md`. Amazon has clearly identified the same fundamental problem we've been addressing in our workshops: moving beyond "vibe coding" toward structured AI collaboration through spec development.
 
-I found myself wondering if this tool could replace thoughtful (and time-consuming) AI development. However, I have concerns. It seems KIRO productises the outputs whilst gutting the process that makes them effective.
+I found myself wondering if this tool could replace thoughtful (and time-consuming) AI development. However, my concern is that it seems KIRO productises the outputs whilst gutting the process that makes them effective.
 
 ## The promise of structured AI development
 
-KIRO's three-phase approach: requirements generation, technical design, and planning. The platform generates detailed user stories using [EARS notation](https://medium.com/paramtech/ears-the-easy-approach-to-requirements-syntax-b09597aae31d), creates comprehensive technical architecture documentation, and breaks work into sequenced tasks with dependency mapping.
+KIRO's three-phase approach is without question well researched and impressive: requirements generation, technical design, and planning. The platform generates detailed user stories using [EARS notation](https://medium.com/paramtech/ears-the-easy-approach-to-requirements-syntax-b09597aae31d), creates technical architecture documentation, and breaks work into sequenced tasks with dependency mapping.
 
-On paper, this sounds like exactly what we've been advocating. Our workshops emphasise moving beyond casual prompting to structured collaboration with AI systems. KIRO appears to automate this structured approach.
+On paper, this sounds like exactly what we've been advocating. These specs are even more consistent than the ones generated through our structured process and perhaps more grounded in real software development workflows. Our workshops emphasise moving beyond casual prompting to structured collaboration with AI systems. KIRO appears to automate this structured approach.
 
 So, I had to test it out for myself, wondering if this could streamline my existing workflows.
 
@@ -22,17 +22,19 @@ So, I had to test it out for myself, wondering if this could streamline my exist
 
 My first KIRO project was a drone architectural film studio website. Half a day later, I had a fully functional website. Showreel splash, services, portfolio, testimonials, contact forms with API routes. The experience was success - a single prompt evolved into comprehensive requirements, then detailed technical specifications, then working code.
 
-I fed the platform a prompt about showcasing the aerial videography work, detailing services and some information about my desired tech stack. Within minutes, KIRO generated comprehensive specifications. The requirements document outlined user stories for portfolio browsing, service enquiries, testimonials etc. The technical design frameworks, detailed the component architecture, and mapped out the architecture. The implementation plan broke everything into sequential tasks with clear dependencies.
+The requirements document outlined user stories for portfolio browsing, service enquiries, testimonials etc. The technical design specified frameworks, detailed the component architecture, and mapped out the architecture. The implementation plan broke everything into sequential tasks with clear dependencies.
 
-There were a few gaps in the specs I had to fill but it was a good balance between being thorough but also being concise, for easy consumption by both human and AI. This was exactly the kind of structured planning we encourage in our workshops, except generated automatically from a single prompt rather than through deliberate human-AI collaboration.
+There were a few gaps in the specs I had to fill, but it struck a good balance between thorough and concise—exactly the kind of structured planning we encourage in our workshops. The key difference was that it generated specs automatically from a single prompt rather than through deliberate human-AI collaboration.
 
-Once I carefully refined and iterated over the spec, I went into full vibe coding mode. I just ran through the tasks without looking too much at the code. Everything worked more or less as specified. The rapid progression from concept to working application felt like real progress.
+KIRO didn't facilitate collaborative spec refinement. The platform simply generates comprehensive documentation and expects acceptance or rejection, not discussion. I ended up manually editing the specs wherever I could without the iterative dialogue that makes our framework effective.
 
-Then I peeped at the code.
+Afterwards, I went into full vibe coding mode. I just ran through the tasks without looking too much at the code. Everything worked more or less as specified. The rapid progression from concept to working application felt like real progress.
+
+Then I took a peep at the code.
 
 ## The maintainability crisis
 
-Buried beneath KIRO's polished specifications was a familiar problem: the generated code was fundamentally unmaintainable. Components repeated identical logic across files. Complex components spanning hundreds of lines mixing multiple concerns. State management was scattered and inconsistent. There was no architectural coherence beyond what the specifications explicitly mandated.
+Buried beneath KIRO's polished specifications was a familiar problem: the generated code was janky and fundamentally unmaintainable. Components repeated identical logic across files. Complex components spanning hundreds of lines mixing multiple concerns. State management was scattered and inconsistent. There was no architectural coherence beyond what the specifications explicitly mandated. And it certainly didn't follow the DRY, DOTADIW, KISS and modularity principles that I set out in the architectural specification.
 
 Here's what KIRO generated for the Hero section:
 
@@ -91,15 +93,15 @@ const handleNavClick = (href: string) => {
 };
 ```
 
-The specifications themselves were thorough and well-structured. The problem was simpler: KIRO generated them from my minimal prompt, making hundreds of assumptions without asking. The AI filled every gap with its own preferences, not mine.
+The specifications themselves were thorough and well-structured. The problem was simpler: KIRO generated them from my minimal prompt, making hundreds of assumptions without asking. The AI filled every gap with its own preferences, not mine. An experienced developer might catch these assumptions during spec review, but then they wouldn't need KIRO—they could feed their own specs into any agentic workflow directly.
 
 You can edit the specs afterwards, and I did. But here's the trap: once you're presented with comprehensive documentation, there's psychological resistance to major changes. It feels wasteful to dismantle something that looks complete and professional. This is precisely why the conversation needs to happen before generation begins. Otherwise, you're either stuck with assumptions you don't want, or burning through tokens generating/iterating spec after spec until something finally fits.
 
-This revealed KIRO's fundamental limitation: it covers the functional requirements (`requirements.md`), architectural decisions (`design.md`), and task breakdown (`tasks.md`) from our framework, but it's missing a critical piece - the equivalent of our `STANDARDS.md` or `CLAUDE.md` files that define how code should actually be written.
+This highlights KIRO's fundamental limitation: it covers the functional requirements (`requirements.md`), architectural decisions (`design.md`), and task breakdown (`tasks.md`) from our framework, but it's missing a critical piece - the equivalent of our `STANDARDS.md` or `CLAUDE.md` files that define how code should actually be written.
 
 ## The missing conversation
 
-Our HULA framework emphasises the "Human-in-the-Loop" principle through structured dialogue. The conception phase involves deliberate questioning: What coding patterns do you prefer? How do you handle state management? What are your testing requirements? This conversation shapes what gets built and how.
+Our HULA framework emphasises the "Human-in-the-Loop" principle through structured dialogue. The conception phase involves deliberate questioning: What coding patterns do you prefer? How do you handle state management? What are your testing requirements? These questions are presented with options and the possibility to find out more through more questioning. This shapes what gets built and how.
 
 KIRO skips this conversation entirely. You provide a prompt, review generated specifications, and either accept or refine them. But the AI doesn't encourage discussion about implementation preferences, coding standards, or architectural principles. You're presented with fait accompli specifications that embed countless unstated assumptions. The only options are approve or reject, after which you edit it manually or ask it to regenerate the whole spec in a different flavour, but it never asks for feedback or encourages a refinement process.
 
@@ -109,7 +111,7 @@ This creates a dangerous illusion of structure. Yes, you have detailed specs, bu
 
 My second KIRO experiment involved enhancing an existing component generation pipeline to produce WCAG 2.2 AA compliant React forms. This was a feature I genuinely cared about for a client project, and I was curious whether KIRO's structured approach could help tackle this accessibility challenge.
 
-The platform generated impressively detailed specifications, which I did opt to get involved in refining them alongside the AI, trying to force the conversational approach. I ended up editing the specs manually and using another AI assistant to help me do so because it cause too much friction to try and do this with KIRO, which constantly wants to rewrite the entire spec. I had a [refined accessibility audit document](https://github.com/TandemCreativeDev/llm_nextjs_audit_sheets/blob/main/accessibility/AUDIT.md) which I put together to feed it which was useful.
+The platform generated impressively detailed specifications. I attempted the collaborative refinement approach I'd used before, but encountered the same friction—KIRO constantly wanted to rewrite entire specs rather than discuss changes. I ended up editing manually with help from my [refined accessibility audit document](https://github.com/TandemCreativeDev/llm_nextjs_audit_sheets/blob/main/accessibility/AUDIT.md).
 
 The requirements document outlined specific WCAG criteria, semantic HTML structures, and screen reader compatibility needs. The technical design proposed comprehensive accessibility utilities, focus management systems, and ARIA attribute generation. The task breakdown included validation functions, testing procedures, and touch target compliance.
 
@@ -161,7 +163,7 @@ export class WCAGValidator {
 }
 ```
 
-This 500-line accessibility validation system attempts checks WCAG compliance through regex matching on component code. Each check method is actually well crafted and useful, which is a merit to KIRO's strength in generating these and the audit file that I fed it. However, it is brittle, non-modular, full of wrong assumptions (which would need fixing!) and essentially impossible to maintain and way beyond the scope while replicating a lot of logic already available in browser extension testing tools.
+This 500-line accessibility validation system attempts checks WCAG compliance through regex matching on component code. Each check method is actually well crafted and useful, credit to both KIRO's generation capabilities and the audit file I provided. However, it is brittle, non-modular, full of wrong assumptions (which would need fixing!) and impossible to maintain.   It makes wrong assumptions throughout and replicates logic already available in browser testing tools, all while being massively beyond scope.
 
 The tool had seduced me into over-speccing dangerously. Because it generates specs automatically, it's easy to keep refining and expanding them while losing sight of whether the additional complexity serves your actual goals. This is an issue with any spec-driven workflow actually, even ours. However, having that initial conversation first before any spec is produced gives you the opportunity to outline your scope, timeline, priorities and set those expectations early.
 
@@ -175,7 +177,7 @@ The tool's persistence of context through project files addresses a real pain po
 
 ## What KIRO is missing (and what to do to fill that gap)
 
-The HULA workflow's strength lies in its emphasis on human agency and deliberate decision-making throughout the development process. The [IQRE methodology](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) (**Iterate**, **Question**, **Review/Create**, **Explain**) ensures that AI suggestions are always filtered through human judgment and project-specific requirements.
+Our HULA workflow's strength lies in its emphasis on human agency and deliberate decision-making throughout the development process. The [IQRE methodology](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) (**Iterate**, **Question**, **Review/Create**, **Explain**) ensures that AI suggestions are always filtered through human judgment and project-specific requirements.
 
 Most critically, having a `STANDARDS.md` or `CLAUDE.md` live document establishes coding conventions before any implementation begins. This prevents the maintainability issues I encountered with KIRO-generated code. When AI knows your preferred patterns, naming conventions, and architectural principles, it produces code that fits your project rather than generic implementations.
 
@@ -186,7 +188,6 @@ Compare KIRO's monolithic approach to a more maintainable pattern I use in produ
 export const useNavAnimation = ({
   pathname,
   menuRoutes,
-  isFrench,
   navRef,
   navItemRefs,
 }) => {
@@ -217,7 +218,7 @@ export default function FilterButton({
 }
 ```
 
-The difference is architectural intention. KIRO generates comprehensive functionality within single components, whilst thoughtful development extracts concerns into focused, testable units. The FilterButton handles one job well. The Hero component tries to handle five jobs adequately.
+The difference is architectural intention. KIRO generates comprehensive functionality within single components, whilst thoughtful development extracts concerns into focused, testable units. The FilterButton handles one job well. The Hero component tries to handle five jobs adequately. This reflects a broader pattern with AI coding, an LLM implements the easiest, fastest solution to a task, not necessarily the most maintainable one.
 
 The workshop format we've developed also addresses the collaboration challenge that KIRO doesn't quite solve yet: [how do development teams coordinate when everyone has their own AI assistant?](/posts/beyond-solo-ai-how-pair-programming-with-claude-code-transforms-team-development) Our `TICKETS.md` live dependency mapping approach creates shared context that enables multiple developers to work with separate AI instances while maintaining architectural coherence. This is only the start to fully solve this coordination challenge, and there are plenty of other underlying issues to resolve before such a methodology can be used in real large scale production teams.
 
@@ -234,12 +235,6 @@ KIRO excels at rapid prototyping and client projects where speed matters more th
 But for projects you plan to maintain long-term, or codebases that matter to your business, I'd recommend caution. The generated specifications look comprehensive, but they lack the human discussion and iterative refinement that create truly robust architectures.
 
 This is where our workflow remains more effective. The deliberate emphasis on human-in-the-loop coordination, standards documents, and collaborative specification development produces better outcomes for complex projects, even if it takes longer initially.
-
-## The Claude Code comparison
-
-Having extensively used various AI development tools with multi-agent workflows running under the hood, [Claude Code](https://www.anthropic.com/claude-code) continues to outperform alternatives for me, including KIRO. Although both use the same underlying Anthropic models (CLaude Sonnet), the key differences are transparency, customisation and quality. You can observe and influence the reasoning process rather than accepting black-box specifications. The custom slash commands and hooks enable comprehensive workflow automation. But crucially, a more sophisticated multi-agent reasoning and planning process leads to higher quality outputs.
-
-When Claude Code generates implementation plans, you see the decision-making process and it is presented concisely. When KIRO generates specifications, you see polished outputs without understanding the underlying assumptions. This transparency enables course correction before problems compound.
 
 ## Practical recommendations
 
