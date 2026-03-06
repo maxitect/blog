@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PostList from "../components/PostList";
 import { getAllPosts } from "../lib/posts";
 
@@ -8,8 +7,8 @@ export default function Home() {
     <>
       <h1>Welcome to Maxitect Blog</h1>
       <p className="markdown">
-        Hello! I&apos;m{" "}
-        <Link
+        Hi, I&apos;m{" "}
+        <a
           href="https://linkedin.com/in/maxime-downe-642ba74b"
           role="link"
           target="_blank"
@@ -17,36 +16,24 @@ export default function Home() {
           aria-label="Visit Maxime Downe's LinkedIn profile"
         >
           Maxime Downe
-        </Link>{" "}
+        </a>{" "}
         (aka{" "}
-        <Link
+        <a
           href="https://github.com/maxitect"
           role="link"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit maxitect's github profile"
         >
-          maxitect on github
-        </Link>
-        ), a London-based architect and software engineer who swapped designing
-        buildings for building software. After spearheading rapid-engineering
-        BIM pipelines and crafting bespoke 3D modelling tools, I&apos;ve pivoted
-        to building web and AI-powered applications that solve real-world
-        problems.
+          maxitect on GitHub
+        </a>
+        ) — a London-based software engineer and AI systems builder who started
+        out as an architect and ended up building rather different kinds of
+        structures.
       </p>
       <p className="markdown">
-        Currently on the Founders programme at{" "}
-        <Link
-          href="https://foundersandcoders.com"
-          role="link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit Founders and Coders website"
-        >
-          Founders & Coders
-        </Link>{" "}
-        and co-founder of{" "}
-        <Link
+        I&apos;m co-founder of{" "}
+        <a
           href="https://runintandem.com"
           role="link"
           target="_blank"
@@ -54,22 +41,20 @@ export default function Home() {
           aria-label="Visit Tandem Creative Dev website"
         >
           Tandem Creative Dev
-        </Link>
-        , I&apos;m fascinated by the intersection of computational design and
-        modern web development. Whether I&apos;m debugging collapsed neural
-        networks, experimenting with AI-assisted coding workflows, or building
-        RAG chatbots, there&apos;s always something interesting to unpack.
+        </a>
+        , where we build web applications, AI pipelines, and data platforms for
+        public sector bodies, charities, and founders working on problems worth
+        solving — recent work spans a national skills classification API for the
+        Department for Education, an AI research platform for Gatsby Foundation,
+        and NLP infrastructure for maritime safety data.
       </p>
       <p>
-        On this blog, you&apos;ll find my thoughts on everything from the lean
-        coding style of data scientists to practical frameworks for working with
-        AI. I write about the projects that challenge me, the bugs that I
-        grapple with, and the occasional breakthrough that makes it worthwhile.
+        On this blog I write about what I&apos;m actually building: multi-agent
+        systems, RAG pipelines, full-stack architecture decisions, and the
+        practical realities of shipping AI products that work in production.
+        Less theory, more what I learned when it broke.
       </p>
-      <p>
-        Drop me a line if something resonates — I&apos;m always up for a chat
-        about code, architecture, or how to make machines do clever things.
-      </p>
+      <p>Drop me a line if something resonates.</p>
       <h2>Blog posts</h2>
       <PostList posts={posts} />
     </>
