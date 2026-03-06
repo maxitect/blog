@@ -60,7 +60,7 @@ Buried beneath KIRO's polished specifications was a familiar problem: the genera
 
 Here's what KIRO generated for the Hero section:
 
-```typescript
+```tsx
 export default function Hero({
   videoSrc,
   title,
@@ -115,7 +115,7 @@ const handleNavClick = (href: string) => {
 };
 ```
 
-The specifications themselves were thorough and well-structured. The problem was simpler: KIRO generated them from my minimal prompt, making hundreds of assumptions without asking. The AI filled every gap with its own preferences, not mine. An experienced developer might catch these assumptions during spec review, but then they wouldn't need KIRO—they could feed their own specs into any agentic workflow directly.
+The specifications themselves were thorough and well-structured. The problem was simpler: KIRO generated them from my minimal prompt, making hundreds of assumptions without asking. The AI filled every gap with its own preferences, not mine. An experienced developer might catch these assumptions during spec review, but then they wouldn't need KIRO and simply feed their own specs into any agentic workflow directly.
 
 You can edit the specs afterwards, and I did. But here's the trap: once you're presented with comprehensive documentation, there's psychological resistance to major changes. It feels wasteful to dismantle something that looks complete and professional. This is precisely why the conversation needs to happen before generation begins. Otherwise, you're either stuck with assumptions you don't want, or burning through tokens generating/iterating spec after spec until something finally fits.
 
@@ -197,7 +197,7 @@ Despite these concerns, KIRO represents significant progress in AI-assisted deve
 
 The tool's persistence of context through project files addresses a real pain point in AI-assisted development. Rather than losing architectural decisions across conversation resets, KIRO maintains them in version-controlled documentation. This is exactly the kind of systematic approach that scales beyond individual developers to team coordination.
 
-## What KIRO is missing (and what to do to fill that gap)
+## What KIRO is missing (and how to fill the gap)
 
 Our HULA workflow's strength lies in its emphasis on human agency and deliberate decision-making throughout the development process. The [IQRE methodology](/posts/ai-in-the-loop-reflections-on-delivering-the-hula-workshops-at-founders-coders) (**Iterate**, **Question**, **Review/Create**, **Explain**) ensures that AI suggestions are always filtered through human judgment and project-specific requirements.
 
